@@ -1,5 +1,6 @@
 # HAK3
-Katamino - Bilkent University CS319-1 Project for Group Number:1.H Group Name:HAK3 
+Katamino - Bilkent University CS319-1 Project for Group Number:1.H 
+Group Name:HAK3 
 
 Group Members:
 
@@ -39,4 +40,4 @@ Additional Features, Differences:
 * Easter eggs
 
 References:
-1.https://www.thegamerules.com/en/board-games/family/katamino-907-detail
+1.“Katamino.” Game Rules, www.thegamerules.com/en/board-games/family/katamino-907-detail.
