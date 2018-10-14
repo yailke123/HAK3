@@ -1,5 +1,5 @@
 # HAK3
-Katamino - Bilkent University CS319-1 Project for Group HAK3 
+Katamino - Bilkent University CS319-1 Project for Group Number:1.H Group Name:HAK3 
 
 Group Members:
 
@@ -9,11 +9,15 @@ Group Members:
 4. Yağız Efe Mertol
 5. Zeynep Gözel
 
-Description of the Project:
+Project Topic: Katamino
+
+Description of Katamino:
+Katamino has 12 different pieces. Every piece contains 5 squares, arranged in different ways. There are also filler pieces which are 1 or 2 squares. The classic katamino game is setup by dividing the board into two parts. After that both players are given five blocks and 4 filler blocks. The first player to fill their section with the given blocks is the winner of the game.[1]
+
+Description and requirements of Katamino:
 * In our project we will implement the geometrical mind game Katamino.
 * The main objective of this project is to make this a desktop game using the fundamentals of object oriented programming.
 
-Description of Katamino:
 General:
 It is a singleplayer 2D mind game, where the player tries to fill the board with the given blocks in different colours and geometrical shapes.
 
@@ -26,10 +30,13 @@ Mouse is used to drag the blocks from the given blocks onto the board. After the
 Gameplay:
 Player chooses the game level and category from the main screen and begins the game. Different boards will appear according to the player’s selections. Player should fill the board with the given blocks.
 
-Additional Features:
+Additional Features, Differences:
 * A time counter will keep count of the time from the beginning of the level.
 * A move counter will keep count of the moves done by the user in the current level.
 * An online leaderboard will allow the user to upload their score (which is determined by their move and time count) to an online database and compare it with other users.
-* A level creator will allow the user to create a board design.
+* A level creator will allow the user to create a board design using pixel-art.
 * A hint system will be implemented. This system will guide the user towards a solution.
 * Easter eggs
+
+References:
+1.https://www.thegamerules.com/en/board-games/family/katamino-907-detail
