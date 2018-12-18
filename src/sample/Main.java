@@ -15,7 +15,8 @@ public class Main extends Application {
         myTimer = new Timer();
         myTimer.startTime();
         System.out.println(myTimer.getTime());
-//asdfghjk
+
+
 
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         this.primaryStage = primaryStage;

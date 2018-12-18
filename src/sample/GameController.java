@@ -734,7 +734,10 @@ public class GameController {
     }
 
     private void createBoard() throws Exception {
-        myBoard = new Board("C:\\Katamino\\src\\sample\\"+ boardName);
+
+
+        String dir = System.getProperty(("user.dir")) + "/src/sample/";
+        myBoard = new Board(dir + boardName);
         Cell[][] boardCells = myBoard.getBoardCells();
 
         for( int i = 0; i < 20; i++) {
