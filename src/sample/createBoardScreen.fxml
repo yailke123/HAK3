@@ -63,21 +63,21 @@
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                <children>
-                  <Button fx:id="back" alignment="TOP_RIGHT" mnemonicParsing="false" onMouseClicked="#backClicked" text="Back" />
-                  <Button fx:id="test" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onMouseClicked="#testClicked" text="Test" />
-                  <Button fx:id="clear" mnemonicParsing="false" onMouseClicked="#clearClicked" text="Clear" />
+                  <Button fx:id="back" alignment="TOP_RIGHT" mnemonicParsing="false" onMouseClicked="#backClicked" text="Back" minWidth="51" />
+                  <Button fx:id="test" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onMouseClicked="#testClicked" text="Save" minWidth="51"/>
+                  <Button fx:id="clear" mnemonicParsing="false" onMouseClicked="#clearClicked" text="Clear" minWidth="70" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Pane fx:id="blackButton" onMouseClicked="#blackClicked" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: BLACK;" />
                   <Pane fx:id="whiteButton" onMouseClicked="#whiteClicked" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: WHITE;" />
-                  <Pane fx:id="pinkButton" layoutX="10.0" layoutY="10.0" onMouseClicked="#pinkClicked" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: PINK;" />
+                  <Pane fx:id="pinkButton" layoutX="10.0" layoutY="10.0" onMouseClicked="#pinkClicked" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: DEEPPINK;" />
                   <Pane fx:id="grayButton" layoutX="68.0" layoutY="10.0" onMouseClicked="#grayClicked" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: GRAY;" />
-                  <Pane fx:id="greenButton" layoutX="53.0" layoutY="10.0" onMouseClicked="#greenClicked" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: LIGHTGREEN;" />
+                  <Pane fx:id="greenButton" layoutX="53.0" layoutY="10.0" onMouseClicked="#greenClicked" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: SPRINGGREEN;" />
                   <Pane fx:id="redButton" layoutX="10.0" layoutY="10.0" onMouseClicked="#redClicked" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: RED;" />
                   <Pane fx:id="yellowButton" layoutX="45.0" layoutY="10.0" onMouseClicked="#yellowClicked" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: YELLOW;" />
-                  <Pane fx:id="blueButton" layoutX="80.0" layoutY="10.0" onMouseClicked="#blueClicked" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: BLUE;" />
+                  <Pane fx:id="blueButton" layoutX="80.0" layoutY="10.0" onMouseClicked="#blueClicked" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: DEEPSKYBLUE;" />
                   <Pane fx:id="purpleButton" layoutX="115.0" layoutY="10.0" onMouseClicked="#purpleClicked" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: PURPLE;" />
                   <Pane fx:id="orangeButton" layoutX="150.0" layoutY="10.0" onMouseClicked="#orangeClicked" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: ORANGE;" />
                </children>
