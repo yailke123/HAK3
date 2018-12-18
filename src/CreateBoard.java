@@ -74,7 +74,7 @@ public class CreateBoard {
           System.out.println(text.getText());
           userBoardName = text.getText();
           String dir =System.getProperty("user.dir");
-          dir = dir  + "\\src\\sample\\boards\\" + userBoardName;
+          dir = dir  + "\\src\\boards\\" + userBoardName;
           File f = new File(dir);
           int i = 1;
           int len = dir.length();
