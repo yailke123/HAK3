@@ -37,7 +37,6 @@ public class CreateBoard {
         app_stage.setScene(scene); //This sets the scene as scene
         app_stage.show(); // this shows the scene
     }
-
     public void blackClicked()throws Exception{ choosenColor = "BLACK"; }
     public void whiteClicked()throws Exception{ choosenColor = "WHITE"; }
     public void pinkClicked()throws Exception{ choosenColor = "DEEPPINK"; }
