@@ -29,7 +29,6 @@ public class GameController {
     private int[] blockNumbers;
     private int column2;
     private int row2;
-    boolean full = false;
     public GridPane block0Grid , block1Grid , block2Grid , block3Grid , block4Grid , block5Grid , block6Grid , block7Grid , block8Grid , block9Grid ;
     public Label  block0Amount , block1Amount , block2Amount , block3Amount , block4Amount , block5Amount , block6Amount , block7Amount , block8Amount , block9Amount;
     private int[][] cellNos = new int[20][20];
@@ -116,11 +115,7 @@ public class GameController {
     }
 
     private void addEventDetectorsBoard() throws Exception{
-        for(int i = 0; i < 20; i++){
-            for(int j = 0; j <20; j++) {
-            System.out.println(cellNos[i][j] + "  ");
-            }
-        }
+
         Cell[][] boardCells = myBoard.getBoardCells();
         for(int i = 0; i < 20; i++){
             for(int j = 0; j <20; j++){
@@ -149,7 +144,7 @@ public class GameController {
                             int index2 = cellNos[row2][column2];
                             for(int i = 0; i < 20; i++){
                                 for(int j = 0; j <20; j++) {
-                                    if( cellNos[i][j] == index2 && full){
+                                    if( cellNos[i][j] == index2 && boardCells[i][j].getFilled() == true){
                                         block = blockNo[i][j];
                                         System.out.println(i +" " + j);
                                         boardCells[i][j].setFilled(false);
@@ -159,7 +154,7 @@ public class GameController {
                                 }
                             }
                         }
-                        full = false;
+
                         if( block.equals("block0Amount")) {
                             blockNumbers[0] ++;
                             block0Amount.setText("x" + blockNumbers[0]);
@@ -283,7 +278,7 @@ public class GameController {
                             index++;
                             cellNos[y][x] = index;
                             blockNo[y][x] = "block0Amount";
-                            full = true;
+
 
                             success = true;
                         }
@@ -320,7 +315,7 @@ public class GameController {
                             cellNos[y-1][x] = index;
                             blockNo[y][x] = "block1Amount";
                             blockNo[y-1][x] = "block1Amount";
-                            full = true;
+
                             success = true;
                         }
                     }
@@ -391,7 +386,7 @@ public class GameController {
                             blockNo[y-1][x] = "block2Amount";
                             blockNo[y+1][x] = "block2Amount";
                             blockNo[y][x-1] = "block2Amount";
-                            full = true;
+
                             success = true;
                         }
                     }
@@ -460,7 +455,7 @@ public class GameController {
                             blockNo[y-1][x] = "block3Amount";
                             blockNo[y+1][x] = "block3Amount";
                             blockNo[y-1][x-1] = "block3Amount";
-                            full = true;
+
                             success = true;
                         }
                     }
@@ -517,7 +512,7 @@ public class GameController {
                             blockNo[y][x] = "block4Amount";
                             blockNo[y-1][x] = "block4Amount";
                             blockNo[y+1][x] = "block4Amount";
-                            full = true;
+
 
                             success = true;
                         }
@@ -567,7 +562,7 @@ public class GameController {
                             blockNo[y+1][x] = "block5Amount";
                             blockNo[y][x+1] = "block5Amount";
                             blockNo[y+1][x] = "block5Amount";
-                            full = true;
+
                             success = true;
                         }
                     }
@@ -639,7 +634,7 @@ public class GameController {
                             blockNo[y-1][x] = "block6Amount";
                             blockNo[y-1][x-1] = "block6Amount";
                             blockNo[y][x-1] = "block6Amount";
-                            full = true;
+
                             success = true;
                         }
                     }
@@ -710,7 +705,7 @@ public class GameController {
                             blockNo[y-1][x] = "block7Amount";
                             blockNo[y+1][x-1] = "block7Amount";
                             blockNo[y][x-1] = "block7Amount";
-                            full = true;
+
                             success = true;
                         }
                     }
@@ -795,7 +790,7 @@ public class GameController {
                             blockNo[y+1][x] = "block8Amount";
                             blockNo[y][x-1] = "block8Amount";
                             blockNo[y][x+1] = "block8Amount";
-                            full = true;
+
 
                             success = true;
                         }
@@ -884,7 +879,7 @@ public class GameController {
                             blockNo[y+1][x] = "block9Amount";
                             blockNo[y-1][x-1] = "block9Amount";
                             blockNo[y+1][x-1] = "block9Amount";
-                            full = true;
+
 
                             success = true;
                         }
