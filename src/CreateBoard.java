@@ -69,10 +69,10 @@ public class CreateBoard {
         Button saveButton = new Button ("Save");
             final boolean[] saved = {false};
         saveButton.setOnAction(e -> {
-          System.out.println(text.getText());
+          //System.out.println(text.getText());
           userBoardName = text.getText();
           String dir =System.getProperty("user.dir");
-          dir = dir  + "\\src\\boards\\" + userBoardName;
+          dir = dir  + "//src//boards//" + userBoardName;
           File f = new File(dir);
           int i = 1;
           int len = dir.length();
