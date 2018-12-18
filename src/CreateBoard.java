@@ -1,5 +1,3 @@
-package sample;
-
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
