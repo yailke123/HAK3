@@ -1,5 +1,3 @@
-package sample;
-
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -31,7 +29,7 @@ public class CreateBoard {
     private String userBoardName;
     private String choosenColor = "DEEPPINK"; // inital color is pink
     public void backClicked()throws Exception{
-        Parent loader = FXMLLoader.load(getClass().getResource("sample.fxml"));//Creates a Parent called loader and assign it as leaderboard.FXML
+        Parent loader = FXMLLoader.load(getClass().getResource("fxml/sample.fxml"));//Creates a Parent called loader and assign it as leaderboard.FXML
         Scene scene = new Scene(loader); //This creates a new scene called scene and assigns it as the Sample.FXML document which was named "loader"
         Stage app_stage = (Stage)back.getScene().getWindow();
         app_stage.setScene(scene); //This sets the scene as scene
@@ -71,10 +69,10 @@ public class CreateBoard {
         Button saveButton = new Button ("Save");
             final boolean[] saved = {false};
         saveButton.setOnAction(e -> {
-          System.out.println(text.getText());
+          //System.out.println(text.getText());
           userBoardName = text.getText();
           String dir =System.getProperty("user.dir");
-          dir = dir  + "\\src\\boards\\" + userBoardName;
+          dir = dir  + "//src//boards//" + userBoardName;
           File f = new File(dir);
           int i = 1;
           int len = dir.length();
