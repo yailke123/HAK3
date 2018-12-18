@@ -1,5 +1,3 @@
-package sample;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,8 +15,7 @@ public class Main extends Application {
         System.out.println(myTimer.getTime());
 
 
-
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("fxml/sample.fxml"));
         this.primaryStage = primaryStage;
         primaryStage.setTitle("Katamino++");
         primaryStage.setScene(new Scene(root, 600 , 400));

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-border-radius: 2em; -fx-background-radius: 2em;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+   <children>
+      <AnchorPane layoutX="288.0" prefHeight="400.0" prefWidth="312.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="288.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <ImageView fitHeight="400.0" fitWidth="600.0" layoutX="-286.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-286.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
+               <image>
+                  <Image url="@../pic/zego.png" />
+               </image>
+            </ImageView>
+            <AnchorPane layoutX="-286.0" prefHeight="400.0" prefWidth="246.0" style="-fx-background-color: #ff9739; -fx-background-radius: 2em;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-286.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <AnchorPane layoutY="-1.0" prefHeight="430.0" prefWidth="52.0" style="-fx-background-color: darkgray; -fx-border-radius: 2em;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </AnchorPane>
+                  <JFXButton fx:id="startButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="1.0" layoutY="45.0" onMouseClicked="#startButtonClicked" prefHeight="75.0" prefWidth="250.0" text="Start Game">
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="@../pic/play-button.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="createBoardButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="1.0" layoutY="120.0" onMouseClicked="#createBoardButtonClicked" prefHeight="75.0" prefWidth="250.0" text="Create Board">
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="@../pic/pencil-edit-button.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="exitButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="1.0" layoutY="270.0" onMouseClicked="#exitButtonClicked" prefHeight="75.0" prefWidth="250.0" text="Exit">
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="@../pic/exit.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="leaderboardButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="1.0" layoutY="195.0" onMouseClicked="#leaderboardClicked" prefHeight="64.0" prefWidth="250.0" text="Show Leaderboard">
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="@../pic/rank.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </AnchorPane>
+            <ImageView fitHeight="248.0" fitWidth="312.0" layoutX="-10.0" layoutY="89.0">
+               <image>
+                  <Image url="@../pic/Resim6.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
