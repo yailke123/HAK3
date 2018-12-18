@@ -57,7 +57,6 @@ public class CreateBoard {
 
     @FXML
     private GridPane grid ;
-
     public void initialize() {
 
         //Save board button and its function
