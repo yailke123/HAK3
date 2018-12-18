@@ -1,4 +1,3 @@
-package sample;
 
 import javafx.animation.Timeline;
 import javafx.beans.property.*;
@@ -100,7 +99,7 @@ public class GameController {
     }
 
     public void backClicked()throws Exception{
-        Parent loader = FXMLLoader.load(getClass().getResource("sample.fxml"));//Creates a Parent called loader and assign it as leaderboard.FXML
+        Parent loader = FXMLLoader.load(getClass().getResource("fxml/sample.fxml"));//Creates a Parent called loader and assign it as leaderboard.FXML
         Scene scene = new Scene(loader); //This creates a new scene called scene and assigns it as the Sample.FXML document which was named "loader"
         Stage app_stage = (Stage)back.getScene().getWindow();
         app_stage.setScene(scene); //This sets the scene as scene
@@ -117,7 +116,7 @@ public class GameController {
                 Dragboard db = source.startDragAndDrop(TransferMode.ANY);
                 //Put ImageView on dragboard
                 ClipboardContent cbContent = new ClipboardContent();
-                Image blockImage = new Image("sample/blocks/"+blockName+".png");
+                Image blockImage = new Image("blocks/"+blockName+".png");
                 cbContent.putImage(blockImage);
 //                cbContent.putImage;
                 //cbContent.put()
@@ -734,7 +733,8 @@ public class GameController {
     }
 
     private void createBoard() throws Exception {
-        myBoard = new Board("C:\\Katamino\\src\\sample\\"+ boardName);
+        String dir = System.getProperty(("user.dir")) + "/src/boards/";
+        myBoard = new Board(dir + boardName + "/" + boardName);
         Cell[][] boardCells = myBoard.getBoardCells();
 
         for( int i = 0; i < 20; i++) {

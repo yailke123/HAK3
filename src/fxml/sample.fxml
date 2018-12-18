@@ -9,7 +9,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-border-radius: 2em; -fx-background-radius: 2em;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-border-radius: 2em; -fx-background-radius: 2em;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <children>
       <AnchorPane layoutX="288.0" prefHeight="400.0" prefWidth="312.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="288.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <effect>
@@ -18,7 +18,7 @@
          <children>
             <ImageView fitHeight="400.0" fitWidth="600.0" layoutX="-286.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-286.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
                <image>
-                  <Image url="@zego.png" />
+                  <Image url="@../pic/zego.png" />
                </image>
             </ImageView>
             <AnchorPane layoutX="-286.0" prefHeight="400.0" prefWidth="246.0" style="-fx-background-color: #ff9739; -fx-background-radius: 2em;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-286.0" AnchorPane.topAnchor="0.0">
@@ -32,7 +32,7 @@
                      <graphic>
                         <ImageView>
                            <image>
-                              <Image url="@play-button.png" />
+                              <Image url="@../pic/play-button.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -44,7 +44,7 @@
                      <graphic>
                         <ImageView>
                            <image>
-                              <Image url="@pencil-edit-button.png" />
+                              <Image url="@../pic/pencil-edit-button.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -56,7 +56,7 @@
                      <graphic>
                         <ImageView>
                            <image>
-                              <Image url="@exit.png" />
+                              <Image url="@../pic/exit.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -68,7 +68,7 @@
                      <graphic>
                         <ImageView>
                            <image>
-                              <Image url="@rank.png" />
+                              <Image url="@../pic/rank.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -83,7 +83,7 @@
             </AnchorPane>
             <ImageView fitHeight="248.0" fitWidth="312.0" layoutX="-10.0" layoutY="89.0">
                <image>
-                  <Image url="@Resim6.png" />
+                  <Image url="@../pic/Resim6.png" />
                </image>
             </ImageView>
          </children>

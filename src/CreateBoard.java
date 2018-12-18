@@ -37,6 +37,7 @@ public class CreateBoard {
         app_stage.setScene(scene); //This sets the scene as scene
         app_stage.show(); // this shows the scene
     }
+
     public void blackClicked()throws Exception{ choosenColor = "BLACK"; }
     public void whiteClicked()throws Exception{ choosenColor = "WHITE"; }
     public void pinkClicked()throws Exception{ choosenColor = "DEEPPINK"; }
@@ -54,8 +55,10 @@ public class CreateBoard {
          clear();
     }
 
+
     @FXML
     private GridPane grid ;
+
     public void initialize() {
 
         //Save board button and its function
@@ -68,6 +71,7 @@ public class CreateBoard {
         Button saveButton = new Button ("Save");
             final boolean[] saved = {false};
         saveButton.setOnAction(e -> {
+          System.out.println(text.getText());
           userBoardName = text.getText();
           String dir =System.getProperty("user.dir");
           dir = dir  + "\\src\\sample\\boards\\" + userBoardName;
@@ -87,7 +91,6 @@ public class CreateBoard {
           window.close();
 
         });
-
         VBox layout = new VBox(10);
         layout.getChildren().addAll(text,saveButton);
         layout.setAlignment(Pos.CENTER);
@@ -165,6 +168,7 @@ public class CreateBoard {
                      pane.setStyle("-fx-border-color: BLACK" );//-fx-border-insets: BLACK;");
             }
         });
+
         grid.add(pane, colIndex, rowIndex);
     }
 

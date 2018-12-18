@@ -1,5 +1,3 @@
-package sample;
-
 public class Block {
         private Cell[][] blockShape;
         private String textDir;
@@ -17,7 +15,7 @@ public class Block {
             }
             enumSelection(blockName);
         }
-
+//aaaaaa
         private void enumSelection(BlockShape block){
             if(block == BlockShape.ONE)
                 this.blockShape[1][1].setVisible(true);

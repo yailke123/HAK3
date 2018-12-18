@@ -1,4 +1,3 @@
-package sample;
 
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -11,7 +10,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import sample.LeaderboardController;
+
 
 import java.util.Optional;
 
@@ -29,7 +28,7 @@ public class Controller {
 
 
 
-        Parent loader = FXMLLoader.load(getClass().getResource("game.fxml"));
+        Parent loader = FXMLLoader.load(getClass().getResource("fxml/game.fxml"));
         Scene scene = new Scene(loader);
         Stage app_stage = (Stage)startButton.getScene().getWindow();
         app_stage.setScene(scene);
@@ -37,7 +36,7 @@ public class Controller {
     }
 
     public void leaderboardClicked()throws Exception{
-        Parent loader = FXMLLoader.load(getClass().getResource("leaderboard.fxml"));//Creates a Parent called loader and assign it as leaderboard.FXML
+        Parent loader = FXMLLoader.load(getClass().getResource("fxml/leaderboard.fxml"));//Creates a Parent called loader and assign it as leaderboard.FXML
         Scene scene = new Scene(loader); //This creates a new scene called scene and assigns it as the Sample.FXML document which was named "loader"
         Stage app_stage = (Stage)leaderboardButton.getScene().getWindow();
         app_stage.setScene(scene); //This sets the scene as scene
@@ -92,7 +91,7 @@ public class Controller {
         });
 
 
-        Parent loader = FXMLLoader.load(getClass().getResource("createBoardScreen.fxml"));
+        Parent loader = FXMLLoader.load(getClass().getResource("fxml/createBoardScreen.fxml"));
         Scene scene = new Scene(loader);
         Stage app_stage = (Stage)createBoardButton.getScene().getWindow();
         app_stage.setScene(scene);
