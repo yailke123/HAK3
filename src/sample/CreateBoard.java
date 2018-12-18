@@ -55,7 +55,6 @@ public class CreateBoard {
          clear();
     }
 
-
     @FXML
     private GridPane grid ;
 
