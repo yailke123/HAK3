@@ -3,6 +3,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Main extends Application {
     Stage primaryStage;
@@ -18,7 +19,12 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("fxml/sample.fxml"));
         this.primaryStage = primaryStage;
         primaryStage.setTitle("Katamino++");
-        primaryStage.setScene(new Scene(root, 600 , 400));
+        Scene primaryScene = new Scene(root);
+        primaryStage.setScene(primaryScene);
+        primaryStage.setMaximized(true);
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
+        primaryStage.initStyle(StageStyle.UNDECORATED);
+
         primaryStage.show();
 
     }
