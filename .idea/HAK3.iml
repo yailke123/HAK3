@@ -10,5 +10,6 @@
     <orderEntry type="library" name="jfoenix-9.0.6" level="project" />
     <orderEntry type="library" name="jfoenix-8.0.8 (2)" level="project" />
     <orderEntry type="library" name="jfoenix-8.0.8" level="project" />
+    <orderEntry type="library" name="zt-zip-1.13" level="project" />
   </component>
 </module>

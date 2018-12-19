@@ -13,6 +13,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.StageStyle;
 
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class Controller {
@@ -20,14 +23,13 @@ public class Controller {
     public Button startButton, leaderboardButton, createBoardButton, exitButton, soundButton;
 
     public void startButtonClicked()throws Exception{
+
         TextInputDialog dialog = new TextInputDialog("");
         dialog.setTitle("");
         dialog.setHeaderText("");
         dialog.setContentText("Please enter your name:");
         Optional<String> result = dialog.showAndWait();
         result.ifPresent(name -> System.out.println("Your name: " + name));
-
-
 
         Parent loader = FXMLLoader.load(getClass().getResource("fxml/game.fxml"));
         Scene scene = new Scene(loader);

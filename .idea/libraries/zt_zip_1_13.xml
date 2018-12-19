@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="zt-zip-1.13">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/zt-zip-1.13.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
