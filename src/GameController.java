@@ -18,7 +18,9 @@ import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.zeroturnaround.zip.ZipUtil;
 
+import javax.swing.*;
 import java.io.File;
 import java.util.*;
 
@@ -106,11 +108,42 @@ public class GameController {
 //        dialog.setContentText("Please enter board name:");
 //        Optional<String> result = dialog.showAndWait();
 //        result.ifPresent(name -> boardName = name);
-        File folder = new File("C:\\IdeaProjects\\src\\boards");
+        File folder = new File(System.getProperty(("user.dir")) + "/src/boards/");
         File[] listOfFiles = folder.listFiles();
         ObservableList<String> fileNames = FXCollections.observableArrayList();
         Stage newDialog = new Stage(StageStyle.UTILITY);
         BorderPane rootpane = new BorderPane();
+        HBox buttonBox = new HBox();
+        Button choiceButton = new Button("Choose");
+        Button importButton = new Button("Import");
+        Button exportButton = new Button("Export");
+
+        //TODO import
+        importButton.setOnMouseClicked((event)->{
+            newDialog.close();
+        });
+
+        //TODO export
+        exportButton.setOnMouseClicked((event)->{
+            // parent component of the dialog
+            JFrame parentFrame = new JFrame();
+
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Specify a file to save");
+
+            int userSelection = fileChooser.showSaveDialog(parentFrame);
+
+            if (userSelection == JFileChooser.APPROVE_OPTION) {
+                File fileToSave = fileChooser.getSelectedFile();
+                System.out.println("Save as file: " + fileToSave.getAbsolutePath());
+
+//                ZipUtil.pack(new File(System.getProperty(("user.dir")) + "/src/boards/" + boardName), new File(fileToSave.getAbsolutePath()));
+
+
+            }
+        });
+
+
 
         for (int i = 0; i < listOfFiles.length; i++) {
             if (listOfFiles[i].isDirectory())
@@ -137,11 +170,10 @@ public class GameController {
         listView.setMaxHeight( 355);
         rootpane.setLeft(listView);
 
-        Button choiceButton = new Button("Choose");
         choiceButton.setOnMouseClicked((event)->{
             newDialog.close();
         });
-        rootpane.setBottom(choiceButton);
+
         rootpane.setPrefSize(600, 600);
         // Set the Style-properties of the BorderPane
         rootpane.setStyle("-fx-padding: 10;" +
@@ -152,6 +184,10 @@ public class GameController {
                 "-fx-border-color: blue;");
         newDialog.initModality(Modality.APPLICATION_MODAL);
         newDialog.setTitle("New");
+
+        buttonBox.getChildren().addAll(choiceButton, importButton, exportButton);
+        rootpane.setBottom(buttonBox);
+
         Scene newDialogScene = new Scene(rootpane);
         newDialog.setScene(newDialogScene);
         newDialog.showAndWait();
