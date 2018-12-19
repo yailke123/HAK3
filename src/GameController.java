@@ -1,6 +1,10 @@
 
 import javafx.animation.Timeline;
 import javafx.beans.property.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -8,10 +12,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import java.io.File;
 import java.util.*;
 
 import static java.sql.Types.NULL;
@@ -92,12 +100,71 @@ public class GameController {
 //    }
 
     public void initialize() throws Exception {
-        TextInputDialog dialog = new TextInputDialog("");
-        dialog.setTitle("");
-        dialog.setHeaderText("");
-        dialog.setContentText("Please enter board name:");
-        Optional<String> result = dialog.showAndWait();
-        result.ifPresent(name -> boardName = name);
+//        TextInputDialog dialog = new TextInputDialog("");
+//        dialog.setTitle("");
+//        dialog.setHeaderText("");
+//        dialog.setContentText("Please enter board name:");
+//        Optional<String> result = dialog.showAndWait();
+//        result.ifPresent(name -> boardName = name);
+        File folder = new File("C:\\IdeaProjects\\src\\boards");
+        File[] listOfFiles = folder.listFiles();
+        ObservableList<String> fileNames = FXCollections.observableArrayList();
+        Stage newDialog = new Stage(StageStyle.UTILITY);
+        BorderPane rootpane = new BorderPane();
+
+        for (int i = 0; i < listOfFiles.length; i++) {
+            if (listOfFiles[i].isDirectory())
+                fileNames.add(listOfFiles[i].getName());
+        }
+        Image image = new Image("boards/"+fileNames.get(0)+"/board.png", true);
+        ImageView boardImage = new ImageView();
+        boardImage.setImage(image);
+        boardImage.setFitHeight(350);
+        boardImage.setFitWidth(350);
+        rootpane.setRight(boardImage);
+
+        ListView<String> listView = new ListView<String>();
+        listView.setItems(fileNames);
+        listView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                boardName = newValue;
+                Image image = new Image("boards/"+boardName+"/board.png", true);
+                boardImage.setImage(image);
+            }
+        });
+        listView.setMaxWidth( 180);
+        listView.setMaxHeight( 355);
+        rootpane.setLeft(listView);
+
+        Button choiceButton = new Button("Choose");
+        choiceButton.setOnMouseClicked((event)->{
+            newDialog.close();
+        });
+        rootpane.setBottom(choiceButton);
+        rootpane.setPrefSize(600, 600);
+        // Set the Style-properties of the BorderPane
+        rootpane.setStyle("-fx-padding: 10;" +
+                "-fx-border-style: solid inside;" +
+                "-fx-border-width: 2;" +
+                "-fx-border-insets: 5;" +
+                "-fx-border-radius: 5;" +
+                "-fx-border-color: blue;");
+        newDialog.initModality(Modality.APPLICATION_MODAL);
+        newDialog.setTitle("New");
+        Scene newDialogScene = new Scene(rootpane);
+        newDialog.setScene(newDialogScene);
+        newDialog.showAndWait();
+
+
+//        ChoiceDialog<String> dialog = new ChoiceDialog<>(fileNames.get(0),fileNames);
+//        dialog.setTitle("Choose Board");
+//        dialog.setHeaderText("Choose Board");
+//        dialog.setContentText("Choose your board:");
+//        Optional<String> result = dialog.showAndWait();
+//        result.ifPresent(letter -> boardName = letter);
+
+
 
         createBoard();
         createBlocks();
@@ -215,7 +282,7 @@ public class GameController {
 
 
     private void addEventDetectors( GridPane source, Pane target, String blockName) throws Exception{
-        //Drag detected event handler is used for adding drag functionality to the boat node
+        //Drag detected event handler is used for adding drag functionality to the
         source.setOnDragDetected(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
                 //Drag was detected, start drap-and-drop gesture
