@@ -19,12 +19,16 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.zeroturnaround.zip.ZipUtil;
-
 import javax.swing.*;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.*;
-
-import static java.sql.Types.NULL;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
+import java.util.zip.ZipOutputStream;
 
 public class GameController {
     public GridPane boardPane;
@@ -33,7 +37,7 @@ public class GameController {
         BLACK, WHITE, PINK, GRAY, GREEN, RED, YELLOW, BLUE, PURPLE, ORANGE
     }
     public Label timerLabel;
-    public String boardName = "kalp";
+    public String boardName = "";
     public Timer myTimer;
     public Button back;
     private int[] blockNumbers;
@@ -117,10 +121,42 @@ public class GameController {
         Button choiceButton = new Button("Choose");
         Button importButton = new Button("Import");
         Button exportButton = new Button("Export");
+        for (int i = 0; i < listOfFiles.length; i++) {
+            if (listOfFiles[i].isDirectory())
+                fileNames.add(listOfFiles[i].getName());
+        }
 
         //TODO import
         importButton.setOnMouseClicked((event)->{
-            newDialog.close();
+// parent component of the dialog
+            JFrame parentFrame = new JFrame();
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Specify a file to import");
+
+            int userSelection = fileChooser.showSaveDialog(parentFrame);
+
+            if (userSelection == JFileChooser.APPROVE_OPTION) {
+                File fileToSave = fileChooser.getSelectedFile();
+                System.out.println("Unzip: " +fileToSave.getAbsolutePath() );
+                System.out.println("Save to file: " + System.getProperty(("user.dir")) + "/src/boards/");
+
+//                File boardfolder = new File(System.getProperty(("user.dir")) + "/src/boards/"+ boardName +"/");
+//                File[] boardListOfFiles = boardfolder.listFiles();
+//                ObservableList<String> boardFileNames = FXCollections.observableArrayList();
+//                for (int i = 0; i < boardListOfFiles.length; i++) {
+//                    if (boardListOfFiles[i].isFile())
+//                        boardFileNames.add(boardListOfFiles[i].getName());
+//                }
+                String sourceFile ="";
+                if( fileToSave.getAbsolutePath().endsWith(".zip"))
+                    sourceFile = fileToSave.getAbsolutePath();
+                else
+                    sourceFile = fileToSave.getAbsolutePath() + ".zip";
+
+                unzipIt(sourceFile, System.getProperty(("user.dir")) + "/src/boards/");
+//                ZipUtil.pack(new File(System.getProperty(("user.dir")) + "/src/boards/" + boardName),
+//                        new File(fileToSave.getAbsolutePath() + ".zip"));
+            }
         });
 
         //TODO export
@@ -135,20 +171,30 @@ public class GameController {
 
             if (userSelection == JFileChooser.APPROVE_OPTION) {
                 File fileToSave = fileChooser.getSelectedFile();
+                System.out.println("Save: " + System.getProperty(("user.dir")) + "/src/boards/" + boardName);
                 System.out.println("Save as file: " + fileToSave.getAbsolutePath());
 
-//                ZipUtil.pack(new File(System.getProperty(("user.dir")) + "/src/boards/" + boardName), new File(fileToSave.getAbsolutePath()));
+                File boardfolder = new File(System.getProperty(("user.dir")) + "/src/boards/"+ boardName +"/");
+                File[] boardListOfFiles = boardfolder.listFiles();
+                ObservableList<String> boardFileNames = FXCollections.observableArrayList();
+                for (int i = 0; i < boardListOfFiles.length; i++) {
+                    if (boardListOfFiles[i].isFile())
+                        boardFileNames.add(boardListOfFiles[i].getName());
+                }
 
-
+                zipIt(fileToSave.getAbsolutePath() + ".zip", System.getProperty(("user.dir")) + "/src/boards/" + boardName, boardFileNames);
+//                ZipUtil.pack(new File(System.getProperty(("user.dir")) + "/src/boards/" + boardName),
+//                        new File(fileToSave.getAbsolutePath() + ".zip"));
             }
+        });
+
+        choiceButton.setOnMouseClicked((event)->{
+            newDialog.close();
         });
 
 
 
-        for (int i = 0; i < listOfFiles.length; i++) {
-            if (listOfFiles[i].isDirectory())
-                fileNames.add(listOfFiles[i].getName());
-        }
+
         Image image = new Image("boards/"+fileNames.get(0)+"/board.png", true);
         ImageView boardImage = new ImageView();
         boardImage.setImage(image);
@@ -162,6 +208,7 @@ public class GameController {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 boardName = newValue;
+                System.out.println("Path to board: "+ "boards/"+boardName+"/board.png");
                 Image image = new Image("boards/"+boardName+"/board.png", true);
                 boardImage.setImage(image);
             }
@@ -170,9 +217,6 @@ public class GameController {
         listView.setMaxHeight( 355);
         rootpane.setLeft(listView);
 
-        choiceButton.setOnMouseClicked((event)->{
-            newDialog.close();
-        });
 
         rootpane.setPrefSize(600, 600);
         // Set the Style-properties of the BorderPane
@@ -208,6 +252,8 @@ public class GameController {
 //        timerLabel.textProperty().bind(timeSeconds);
 
     }
+
+
 
     public void backClicked()throws Exception{
         Parent loader = FXMLLoader.load(getClass().getResource("fxml/sample.fxml"));//Creates a Parent called loader and assign it as leaderboard.FXML
@@ -316,7 +362,6 @@ public class GameController {
         }
     }
 
-
     private void addEventDetectors( GridPane source, Pane target, String blockName) throws Exception{
         //Drag detected event handler is used for adding drag functionality to the
         source.setOnDragDetected(new EventHandler<MouseEvent>() {
@@ -399,13 +444,13 @@ public class GameController {
                             canvas.setBorder(new Border(new BorderStroke(javafx.scene.paint.Color.RED, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 //                        System.out.println((int)source.getHeight()+ " " +source.getWidth() );
 //                        boardPane.add(canvas, x, y, (int)(source.getHeight()/19.0), (int)(source.getWidth()/19.0))
-                       //     boardPane.add(canvas, x, y, 1, 1);
+                            //     boardPane.add(canvas, x, y, 1, 1);
                             Pane canvas2 = new Pane();
                             cellColor = (Color.values()[boardCells[y-1][x].getColor()]).toString();
                             canvas2.setStyle("-fx-background-color: " + cellColor);
 //                        canvas.setShape();
                             canvas2.setBorder(new Border(new BorderStroke(javafx.scene.paint.Color.RED, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-                          //  boardPane.add(canvas2, x, y-1, 1, 1);
+                            //  boardPane.add(canvas2, x, y-1, 1, 1);
                             boardPane.getChildren().get( x + y*20 +1).setStyle("-fx-background-color: " + cellColor);
                             boardPane.getChildren().get( x + (y-1)*20 +1).setStyle("-fx-background-color: " + cellColor);
                             boardCells[y][x].setFilled(true);
@@ -442,7 +487,7 @@ public class GameController {
                             canvas.setBorder(new Border(new BorderStroke(javafx.scene.paint.Color.RED, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 //                        System.out.println((int)source.getHeight()+ " " +source.getWidth() );
 //                        boardPane.add(canvas, x, y, (int)(source.getHeight()/19.0), (int)(source.getWidth()/19.0))
-                          //  boardPane.add(canvas, x, y, 1, 1);
+                            //  boardPane.add(canvas, x, y, 1, 1);
                             boardPane.getChildren().get( x + y*20 +1).setStyle("-fx-background-color: " + cellColor);
                             //-----------------------
                             Pane canvas2 = new Pane();
@@ -450,7 +495,7 @@ public class GameController {
                             canvas2.setStyle("-fx-background-color: " + cellColor);
 //                        canvas.setShape();
                             canvas2.setBorder(new Border(new BorderStroke(javafx.scene.paint.Color.RED, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-                           // boardPane.add(canvas2, x, y-1, 1, 1);
+                            // boardPane.add(canvas2, x, y-1, 1, 1);
                             boardPane.getChildren().get( x + (y-1)*20 +1).setStyle("-fx-background-color: " + cellColor);
 
                             //-----------------------
@@ -459,7 +504,7 @@ public class GameController {
                             canvas3.setStyle("-fx-background-color: " + cellColor);
 //                        canvas.setShape();
                             canvas3.setBorder(new Border(new BorderStroke(javafx.scene.paint.Color.RED, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-                           // boardPane.add(canvas3, x, y+1, 1, 1);
+                            // boardPane.add(canvas3, x, y+1, 1, 1);
                             boardPane.getChildren().get( x + (y+1)*20 +1).setStyle("-fx-background-color: " + cellColor);
 
                             //-----------------------
@@ -468,7 +513,7 @@ public class GameController {
                             canvas4.setStyle("-fx-background-color: " + cellColor);
 //                        canvas.setShape();
                             canvas4.setBorder(new Border(new BorderStroke(javafx.scene.paint.Color.RED, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-                          //  boardPane.add(canvas4, x-1, y, 1, 1);
+                            //  boardPane.add(canvas4, x-1, y, 1, 1);
                             boardPane.getChildren().get( x-1 + y*20 +1).setStyle("-fx-background-color: " + cellColor);
 
                             boardCells[y][x].setFilled(true);
@@ -1196,4 +1241,93 @@ public class GameController {
         return true;
     }
 
+    public void zipIt(String zipFile, String sourceFolder, ObservableList<String> fileList){
+        byte[] buffer = new byte[1024];
+        String source = new File(sourceFolder).getName();
+        FileOutputStream fos = null;
+        ZipOutputStream zos = null;
+        try {
+            fos = new FileOutputStream(zipFile);
+            zos = new ZipOutputStream(fos);
+
+            System.out.println("Output to Zip : " + zipFile);
+            FileInputStream in = null;
+
+            for (String file: fileList) {
+                System.out.println("File Added : " + file);
+                ZipEntry ze = new ZipEntry(source + File.separator + file);
+                zos.putNextEntry(ze);
+                try {
+                    in = new FileInputStream(sourceFolder + File.separator + file);
+                    int len;
+                    while ((len = in .read(buffer)) > 0) {
+                        zos.write(buffer, 0, len);
+                    }
+                } finally {
+                    in.close();
+                }
+            }
+
+            zos.closeEntry();
+            System.out.println("Folder successfully compressed");
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                zos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void unzipIt(String source, String target) {
+        byte[] buffer = new byte[1024];
+
+        try{
+            //create output directory is not exists
+            //        File folder = new File(OUTPUT_FOLDER);
+            //        if(!folder.exists()){
+            //            folder.mkdir();
+            //        }
+
+            //get the zip file content
+            ZipInputStream zis =
+                    new ZipInputStream(new FileInputStream(source));
+            //get the zipped file list entry
+            ZipEntry ze = zis.getNextEntry();
+
+            while(ze!=null){
+
+                String fileName = ze.getName();
+                File newFile = new File(target + File.separator + fileName);
+
+                System.out.println("file unzip : "+ newFile.getAbsoluteFile());
+
+                //create all non exists folders
+                //else you will hit FileNotFoundException for compressed folder
+                new File(newFile.getParent()).mkdirs();
+
+                FileOutputStream fos = new FileOutputStream(newFile);
+
+                int len;
+                while ((len = zis.read(buffer)) > 0) {
+                    fos.write(buffer, 0, len);
+                }
+
+                fos.close();
+                ze = zis.getNextEntry();
+            }
+
+            zis.closeEntry();
+            zis.close();
+
+            System.out.println("Done");
+
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+    }
 }
+
