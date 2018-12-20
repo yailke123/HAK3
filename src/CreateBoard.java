@@ -1,4 +1,6 @@
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,16 +12,20 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CreateBoard {
     public enum Color {
@@ -27,12 +33,14 @@ public class CreateBoard {
     }
     public Button back,test;
     private String userBoardName;
+    private String dir;
     private String choosenColor = "DEEPPINK"; // inital color is pink
     public void backClicked()throws Exception{
         Parent loader = FXMLLoader.load(getClass().getResource("fxml/sample.fxml"));//Creates a Parent called loader and assign it as leaderboard.FXML
         Scene scene = new Scene(loader); //This creates a new scene called scene and assigns it as the Sample.FXML document which was named "loader"
         Stage app_stage = (Stage)back.getScene().getWindow();
         app_stage.setScene(scene); //This sets the scene as scene
+
         app_stage.show(); // this shows the scene
     }
 
@@ -57,21 +65,42 @@ public class CreateBoard {
     @FXML
     private GridPane grid ;
 
+
+    private void takeSnapShot(Scene scene, String board) {
+        WritableImage writableImage = new WritableImage((int)scene.getWidth(),(int)scene.getHeight());
+        scene.snapshot(writableImage);
+
+        File file = new File(
+                dir   + "/board.png");
+
+        try{
+            ImageIO.write(SwingFXUtils.fromFXImage(writableImage,null), "png", file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void initialize() {
 
         //Save board button and its function
         test.setOnAction(event -> {TextField text = new TextField("Enter Level Name");
         Stage window = new Stage();
+
+
+
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Save Board");
         window.setMinWidth(450);
         window.setResizable(false);
         Button saveButton = new Button ("Save");
-            final boolean[] saved = {false};
+        final boolean[] saved = {false};
+
+
         saveButton.setOnAction(e -> {
           //System.out.println(text.getText());
+
           userBoardName = text.getText();
-          String dir =System.getProperty("user.dir");
+          dir =System.getProperty("user.dir");
           dir = dir  + "//src//boards//" + userBoardName;
           File f = new File(dir);
           int i = 1;
@@ -84,8 +113,12 @@ public class CreateBoard {
                 f = new File(dir);
           }
           new File(dir).mkdirs();
+
           createCustom(dir,userBoardName);
           saved[0] =true;
+
+
+
           window.close();
 
         });
@@ -94,6 +127,8 @@ public class CreateBoard {
         layout.setAlignment(Pos.CENTER);
 
         Scene scene = new Scene (layout);
+
+
         window.setScene(scene);
         window.showAndWait();
 
@@ -104,9 +139,20 @@ public class CreateBoard {
         Text success = new Text("Saved Successfully");
         window.setTitle("Saved");
         layout.getChildren().add(success);
-        window.show();
+        window.showAndWait();
         //window.addEventHandler();
-        clear();
+          BorderPane bp = new BorderPane();
+          bp.setCenter(grid);
+          Scene scene2 = new Scene(bp, 400, 400);
+
+         takeSnapShot(scene2, dir);
+         try {
+            backClicked();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+            //clear();
+
         }
         });
 
@@ -195,7 +241,7 @@ public class CreateBoard {
                     writer.println("01");
             }*/
            Node node;
-
+//asd
             for (int i =0;i<20;i++)
             {
                 for (int j =0;j<20;j++) {
@@ -223,4 +269,7 @@ public class CreateBoard {
         //do something 
         }
     }
+
+
+
 }
