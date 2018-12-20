@@ -103,18 +103,19 @@ public class CreateBoard {
           dir =System.getProperty("user.dir");
           dir = dir  + "//src//boards//" + userBoardName;
           File f = new File(dir);
-          int i = 1;
+          int i = 0;
           int len = dir.length();
           while(f.exists() ) {
+                i++;
                 if(i>1)
                     dir =dir.substring(0,len);
                 dir = dir +"("+i+")";
-                i++;
+
                 f = new File(dir);
           }
           new File(dir).mkdirs();
 
-          createCustom(dir,userBoardName);
+          createCustom(dir,userBoardName,i);
           saved[0] =true;
 
 
@@ -216,16 +217,26 @@ public class CreateBoard {
         grid.add(pane, colIndex, rowIndex);
     }
 
-    private void createCustom(String directory,String name)
+    private void createCustom(String directory,String name,int nameInt)
     {
         ObservableList<Node> childrens = grid.getChildren();
         String style,color,lastValue;
         int colorNum;
         try {
-           PrintWriter writer = new PrintWriter(directory +"//"+ name + ".txt", "UTF-8");
-            PrintWriter infowriter = new PrintWriter(directory +"//"+ name + "Info.txt", "UTF-8");
-            PrintWriter blockwriter = new PrintWriter(directory +"//"+ name + "blocks.txt", "UTF-8");
-            /* for (Node node : childrens) {
+            PrintWriter writer;
+            PrintWriter infowriter;
+            PrintWriter blockwriter;
+            if(nameInt != 0) {
+                writer= new PrintWriter(directory + "//" + name + "(" + nameInt + ")" + ".txt", "UTF-8");
+                infowriter = new PrintWriter(directory + "//" + name + "(" + nameInt + ")" + "Info.txt", "UTF-8");
+                blockwriter = new PrintWriter(directory + "//" + name + "(" + nameInt + ")" + "blocks.txt", "UTF-8");
+            }
+            else {
+                writer = new PrintWriter(directory + "//" + name + ".txt", "UTF-8");
+                infowriter = new PrintWriter(directory + "//" + name + "Info.txt", "UTF-8");
+                blockwriter = new PrintWriter(directory + "//" + name + "blocks.txt", "UTF-8");
+
+                /* for (Node node : childrens) {
                 style = node.getStyle();
                 if(style.length() > 20 && style.substring(0, 20).equals("-fx-background-color")) {
                     color = style.substring(21,style.length()-1);
@@ -240,6 +251,8 @@ public class CreateBoard {
                 else
                     writer.println("01");
             }*/
+            }
+
            Node node;
 //asd
             for (int i =0;i<20;i++)
