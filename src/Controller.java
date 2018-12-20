@@ -31,6 +31,8 @@ public class Controller {
         Optional<String> result = dialog.showAndWait();
         result.ifPresent(name -> System.out.println("Your name: " + name));
 
+
+
         Parent loader = FXMLLoader.load(getClass().getResource("fxml/game.fxml"));
         Scene scene = new Scene(loader);
         Stage app_stage = (Stage)startButton.getScene().getWindow();
