@@ -222,7 +222,7 @@
             </HBox>
             <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Label fx:id="timerLabel" text="Label" />
+                  <Label fx:id="moveCountLabel" text="Label" />
                   <Button fx:id="back" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#backClicked" text="Back" />
                </children>
                <padding>
