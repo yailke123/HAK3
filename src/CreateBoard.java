@@ -245,7 +245,7 @@ public class CreateBoard {
             for (int i =0;i<20;i++)
             {
                 for (int j =0;j<20;j++) {
-                    node  = childrens.get(i+(20*j));
+                    node  = childrens.get(i+(20*j)+1);
                     //System.out.print("j is "+j+", i is " +i+ " ");
                     style = node.getStyle();
                     //System.out.println(style);
