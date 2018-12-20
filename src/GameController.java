@@ -210,6 +210,7 @@ public class GameController {
         ListView<String> listView = new ListView<String>();
         listView.setItems(fileNames);
         listView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            //changed
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 boardName = newValue;
