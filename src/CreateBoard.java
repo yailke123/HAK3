@@ -242,7 +242,7 @@ public class CreateBoard {
                     writer.println("01");
             }*/
            Node node;
-
+//asd
             for (int i =0;i<20;i++)
             {
                 for (int j =0;j<20;j++) {
