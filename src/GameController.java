@@ -38,7 +38,7 @@ public class GameController {
     public enum Color {
         BLACK, WHITE, PINK, GRAY, GREEN, RED, YELLOW, BLUE, PURPLE, ORANGE
     }
-    public Label moveCountLabel;
+    public Label moveCountLabel, timerLabel;
     public String boardName = "";
     public Timer myTimer;
     public Button back;
@@ -261,6 +261,11 @@ public class GameController {
         newDialog.showAndWait();
         createBoard();
         createBlocks();
+        Stage app_stage = new Stage();
+        Time ege = new Time();
+        ege.setTime(100);
+        ege.start(app_stage);
+        ege.addlabel(timerLabel);
 
 
 //        ChoiceDialog<String> dialog = new ChoiceDialog<>(fileNames.get(0),fileNames);
