@@ -43,7 +43,7 @@
                <graphic>
                   <ImageView fitHeight="84.0" fitWidth="84.0">
                      <image>
-                        <Image url="@../pic/pencil-edit-button.png" />
+                        <Image url="@../pic/pencil-edit-button.png"  />
                      </image>
                   </ImageView>
                </graphic>

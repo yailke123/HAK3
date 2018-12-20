@@ -184,7 +184,7 @@ public class LeaderboardController {
         hardLeaderboard.setRoot(root3);
         hardLeaderboard.setShowRoot(false);
     }
-
+//
 
     class Person extends RecursiveTreeObject<Person> {
         StringProperty name;
