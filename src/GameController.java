@@ -168,7 +168,7 @@ public class GameController {
 
         //TODO export
         exportButton.setOnMouseClicked((event)->{
-            // parent component of the dialog
+            // parent component of the dialoglel
             JFrame parentFrame = new JFrame();
 
             JFileChooser fileChooser = new JFileChooser();
