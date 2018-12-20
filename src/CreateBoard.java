@@ -145,7 +145,6 @@ public class CreateBoard {
           bp.setCenter(grid);
           Scene scene2 = new Scene(bp, 400, 400);
 
-          System.out.println(dir);
          takeSnapShot(scene2, dir);
          try {
             backClicked();
