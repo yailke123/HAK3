@@ -1,0 +1,104 @@
+*{
+    -fx-darkpurple : #4F2E37;
+    -fx-darkred : #A5413F;
+    -fx-darkorange : #E86740;
+    -fx-orange: #F99446;
+    -fx-lightorange: #F99446;
+}
+
+//Tab Panels
+.tab{
+    -fx-background-color: -fx-darkpurple;
+    -fx-pref-width : 636;
+    -fx-pref-height : 100;
+}
+.tab-header-background{
+    -fx-background-color: -fx-darkpurple;
+}
+.main-header{
+    -fx-background-color: -fx-darkpurple;
+}
+.tab-easy{
+    -fx-background-color: -fx-darkred;
+}
+.tab-medium{
+    -fx-background-color: -fx-darkred;
+}
+.tab-hard{
+    -fx-background-color: -fx-darkred;
+}
+
+
+.tree-table-view{
+    -fx-tree-table-color: black;
+    -fx-border-color: -fx-darkred;
+     -fx-alignment: center ;
+
+}
+
+.tree-table-view:focused .tree-table-row-cell:selected {
+    -fx-background-color: -fx-darkpurple  ;
+
+}
+
+.tree-table-view:focused .tree-table-row-cell:selected .tree-table-cell{
+    -fx-text-fill: white;
+}
+.tree-table-view .tree-table-row-cell {
+    -fx-background-color: -fx-lightorange;
+     -fx-tree-table-border: 5 5 5 5;
+}
+
+
+.tree-table-view .column-header ,
+.tree-table-view .column-header-background,
+.tree-table-view .column-header-background .filler{
+    -fx-background-color:-fx-darkpurple;
+}
+
+.tree-table-view .column-header{
+    -fx-border-width : 0 1 0 1;
+    -fx-border-color: -fx-darkred;
+}
+
+.tree-table-view .column-header .label {
+    -fx-text-fill : white;
+    -fx-padding : 16 16 16 16 ;
+    -fx-alignment: center ;
+}
+
+.tree-table-view .column-header .arrow, .tree-table-view .column-header .sort-order-dot {
+    -fx-background-color : -fx-darkred;
+}
+
+.tree-table-view .column-header:last-visible {
+    -fx-border-width: 0 2 0 1;
+}
+
+.tree-table-view .column-header-background{
+    -fx-border-width : 0 0.0 1 0;
+    -fx-border-color:-fx-darkred;
+}
+
+.tree-table-view .tree-table-cell{
+    -fx-border-width: 0 0 0 0;
+    -fx-pref-height: 60;
+    -fx-padding : 16 0 16 0 ;
+    -fx-alignment: center ;
+}
+
+.tree-table-view .column-overlay{
+    -fx-background-color: -fx-darkpurple;
+}
+
+.tree-table-view .column-resize-line, .tree-table-view .column-drag-header{
+    -fx-background-color: -fx-lightorange;
+}
+
+
+
+.tree-table-row-cell .jfx-text-field{
+    -fx-focus-color: -fx-darkpurple;
+    -fx-alignment: center ;
+}
+
