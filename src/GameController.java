@@ -1,5 +1,6 @@
 
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.beans.property.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -18,6 +19,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 import org.zeroturnaround.zip.ZipUtil;
 import javax.swing.*;
 import java.io.File;
@@ -50,9 +52,6 @@ public class GameController {
     private int index = 1;
     private final StringProperty timeSeconds = new SimpleStringProperty("Time :");
     private Timeline timeline;
-
-
-
 
     //    public class Timer extends TimerTask{
 //        private long startTime;
@@ -112,6 +111,7 @@ public class GameController {
 //        dialog.setContentText("Please enter board name:");
 //        Optional<String> result = dialog.showAndWait();
 //        result.ifPresent(name -> boardName = name);
+
         File folder = new File(System.getProperty(("user.dir")) + "/src/boards/");
         File[] listOfFiles = folder.listFiles();
         ObservableList<String> fileNames = FXCollections.observableArrayList();
@@ -157,6 +157,13 @@ public class GameController {
 //                ZipUtil.pack(new File(System.getProperty(("user.dir")) + "/src/boards/" + boardName),
 //                        new File(fileToSave.getAbsolutePath() + ".zip"));
             }
+            fileNames.removeAll();
+            File[] newlistOfFiles = folder.listFiles();
+            for (int i = 0; i < newlistOfFiles.length; i++) {
+                if (newlistOfFiles[i].isDirectory())
+                    if(!fileNames.contains(newlistOfFiles[i].getName()))
+                        fileNames.add(newlistOfFiles[i].getName());
+            }
         });
 
         //TODO export
@@ -189,13 +196,11 @@ public class GameController {
         });
 
         choiceButton.setOnMouseClicked((event)->{
-            newDialog.close();
+            newDialog.hide();
         });
 
-
-
-
-        Image image = new Image("boards/"+fileNames.get(0)+"/board.png", true);
+        System.out.println("file:///" + System.getProperty("user.dir") + "/src/boards/"+fileNames.get(0)+"/board.png");
+        Image image = new Image("file:///" + System.getProperty("user.dir") + "/src/boards/"+fileNames.get(0)+"/board.png" , true);
         ImageView boardImage = new ImageView();
         boardImage.setImage(image);
         boardImage.setFitHeight(350);
@@ -209,15 +214,13 @@ public class GameController {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 boardName = newValue;
                 System.out.println("Path to board: "+ "boards/"+boardName+"/board.png");
-                Image image = new Image("boards/"+boardName+"/board.png", true);
+                Image image = new Image("file:///" + System.getProperty("user.dir") + "/src/boards/"+boardName+"/board.png", true);
                 boardImage.setImage(image);
             }
         });
         listView.setMaxWidth( 180);
         listView.setMaxHeight( 355);
         rootpane.setLeft(listView);
-
-
         rootpane.setPrefSize(600, 600);
         // Set the Style-properties of the BorderPane
         rootpane.setStyle("-fx-padding: 10;" +
@@ -231,10 +234,31 @@ public class GameController {
 
         buttonBox.getChildren().addAll(choiceButton, importButton, exportButton);
         rootpane.setBottom(buttonBox);
-
         Scene newDialogScene = new Scene(rootpane);
         newDialog.setScene(newDialogScene);
+//        newDialog.setOnCloseRequest(event -> {
+//            System.out.println("exiting board choice screen");
+//            FXMLLoader newloader = new FXMLLoader(getClass().getResource("sample.fxml"));
+//            try {
+//                Parent root = (Parent)newloader.load();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//            GameController controller = (GameController) newloader.getController();
+//            controller.
+//            newDialog.close();
+//        });
+//        Platform.setImplicitExit(false);
+//
+//        newDialog.setOnCloseRequest(new EventHandler<WindowEvent>() {
+//            @Override
+//            public void handle(WindowEvent event) {
+//                event.consume();
+//            }
+//        });
         newDialog.showAndWait();
+        createBoard();
+        createBlocks();
 
 
 //        ChoiceDialog<String> dialog = new ChoiceDialog<>(fileNames.get(0),fileNames);
@@ -246,14 +270,10 @@ public class GameController {
 
 
 
-        createBoard();
-        createBlocks();
+
 
 //        timerLabel.textProperty().bind(timeSeconds);
-
     }
-
-
 
     public void backClicked()throws Exception{
         Parent loader = FXMLLoader.load(getClass().getResource("fxml/sample.fxml"));//Creates a Parent called loader and assign it as leaderboard.FXML
