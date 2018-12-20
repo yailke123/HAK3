@@ -1,0 +1,18 @@
+*{
+    -fx-darkpurple : #4F2E37;
+    -fx-darkred : #A5413F;
+    -fx-darkorange : #E86740;
+    -fx-orange: #F99446;
+    -fx-lightorange: #F99446;
+}
+
+.bar{
+    -fx-background-color: -fx-darkred;
+    -fx-border-radius: 2em;
+}
+.button-bar{
+    -fx-background-color: -fx-darkorange;
+}
+.katamino-frame{
+    -fx-background-color: -fx-lightorange;
+}  
