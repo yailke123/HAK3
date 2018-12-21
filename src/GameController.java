@@ -38,13 +38,14 @@ public class GameController {
     public enum Color {
         BLACK, WHITE, PINK, GRAY, GREEN, RED, YELLOW, BLUE, PURPLE, ORANGE
     }
-    public Label timerLabel;
+    public Label moveCountLabel, timerLabel;
     public String boardName = "";
     public Timer myTimer;
     public Button back;
     private int[] blockNumbers;
     private int column2;
     private int row2;
+    private int moveCount = 0;
     public GridPane block0Grid , block1Grid , block2Grid , block3Grid , block4Grid , block5Grid , block6Grid , block7Grid , block8Grid , block9Grid ;
     public Label  block0Amount , block1Amount , block2Amount , block3Amount , block4Amount , block5Amount , block6Amount , block7Amount , block8Amount , block9Amount;
     private int[][] cellNos = new int[20][20];
@@ -82,8 +83,8 @@ public class GameController {
 //            Platform.runLater(()-> {
 //                myTimer.startTime();
 //                StringProperty timeSeconds = new SimpleStringProperty((myTimer.getTime()));
-//                timerLabel.textProperty().bind(timeSeconds);
-//                timerLabel.setText(getTime());
+//                moveCountLabel.textProperty().bind(timeSeconds);
+//                moveCountLabel.setText(getTime());
 //                System.out.println(getTime());
 //            });
 //        }
@@ -260,6 +261,11 @@ public class GameController {
         newDialog.showAndWait();
         createBoard();
         createBlocks();
+        Stage app_stage = new Stage();
+        Time ege = new Time();
+        ege.setTime(100);
+        ege.start(app_stage);
+        ege.addlabel(timerLabel);
 
 
 //        ChoiceDialog<String> dialog = new ChoiceDialog<>(fileNames.get(0),fileNames);
@@ -273,7 +279,7 @@ public class GameController {
 
 
 
-//        timerLabel.textProperty().bind(timeSeconds);
+//        moveCountLabel.textProperty().bind(timeSeconds);
     }
 
     public void backClicked()throws Exception{
@@ -442,11 +448,14 @@ public class GameController {
                             boardCells[y][x].setFilled(true);
                             blockNumbers[0]--;
                             block0Amount.setText("x" + blockNumbers[0]);
+                            moveCount++;
+                            moveCountLabel.setText("Move Count: " + moveCount);
                             if(blockNumbers[0]==0){
                                 System.out.println("NOBLOCKSLEFT");
                                 ((GridPane)event.getGestureSource()).setVisible(false);
                             }
                             index++;
+
                             cellNos[y][x] = index;
                             blockNo[y][x] = "block0Amount";
 
@@ -483,8 +492,10 @@ public class GameController {
                             boardCells[y-1][x].setFilled(true);
                             blockNumbers[1] --;
                             block1Amount.setText("x" + blockNumbers[1]);
-
+                            moveCount++;
+                            moveCountLabel.setText("Move Count: " + moveCount);
                             index++;
+
                             cellNos[y][x] = index;
                             cellNos[y-1][x] = index;
                             blockNo[y][x] = "block1Amount";
@@ -549,12 +560,16 @@ public class GameController {
 
                             blockNumbers[2] --;
                             block2Amount.setText("x" + blockNumbers[2]);
-
+                            moveCount++;
+                            moveCountLabel.setText("Move Count: " + moveCount);
                             index++;
+
+
                             cellNos[y][x] = index;
                             cellNos[y-1][x] = index;
                             cellNos[y+1][x] = index;
                             cellNos[y][x-1] = index;
+
 
                             blockNo[y][x] = "block2Amount";
                             blockNo[y-1][x] = "block2Amount";
@@ -618,8 +633,10 @@ public class GameController {
 
                             blockNumbers[3] --;
                             block3Amount.setText("x" + blockNumbers[3]);
-
+                            moveCount++;
+                            moveCountLabel.setText("Move Count: " + moveCount);
                             index++;
+
                             cellNos[y][x] = index;
                             cellNos[y-1][x] = index;
                             cellNos[y+1][x] = index;
@@ -677,8 +694,10 @@ public class GameController {
 
                             blockNumbers[4] --;
                             block4Amount.setText("x" + blockNumbers[4]);
-
+                            moveCount++;
+                            moveCountLabel.setText("Move Count: " + moveCount);
                             index++;
+
                             cellNos[y][x] = index;
                             cellNos[y-1][x] = index;
                             cellNos[y+1][x] = index;
@@ -725,8 +744,10 @@ public class GameController {
 
                             blockNumbers[5] --;
                             block5Amount.setText("x" + blockNumbers[5]);
-
+                            moveCount++;
+                            moveCountLabel.setText("Move Count: " + moveCount);
                             index++;
+
                             cellNos[y][x+1] = index;
                             cellNos[y+1][x] = index;
                             cellNos[y][x+1] = index;
@@ -797,8 +818,10 @@ public class GameController {
 
                             blockNumbers[6] --;
                             block6Amount.setText("x" + blockNumbers[6]);
-
+                            moveCount++;
+                            moveCountLabel.setText("Move Count: " + moveCount);
                             index++;
+
                             cellNos[y][x] = index;
                             cellNos[y-1][x] = index;
                             cellNos[y-1][x-1] = index;
@@ -868,8 +891,10 @@ public class GameController {
 
                             blockNumbers[7] --;
                             block7Amount.setText("x" + blockNumbers[7]);
-
+                            moveCount++;
+                            moveCountLabel.setText("Move Count: " + moveCount);
                             index++;
+
                             cellNos[y][x] = index;
                             cellNos[y-1][x] = index;
                             cellNos[y+1][x-1] = index;
@@ -951,8 +976,10 @@ public class GameController {
 
                             blockNumbers[8] --;
                             block8Amount.setText("x" + blockNumbers[8]);
-
+                            moveCount++;
+                            moveCountLabel.setText("Move Count: " + moveCount);
                             index++;
+
                             cellNos[y][x] = index;
                             cellNos[y-1][x] = index;
                             cellNos[y+1][x] = index;
@@ -1036,12 +1063,16 @@ public class GameController {
                             boardCells[y+1][x-1].setFilled(true);
 
                             blockNumbers[9] --;
+
                             block9Amount.setText("x" + blockNumbers[9]);
+                            moveCount++;
+                            moveCountLabel.setText("Move Count: " + moveCount);
                             if(blockNumbers[9]==0){
                                 ((GridPane)event.getGestureSource()).setVisible(false);
                             }
 
                             index++;
+
                             cellNos[y][x] = index;
                             cellNos[y-1][x] = index;
                             cellNos[y+1][x] = index;
@@ -1194,7 +1225,7 @@ public class GameController {
     private void createBlocks() throws Exception{
         //Get gui grids
         GridPane[] guiBlockGrids = {block0Grid , block1Grid , block2Grid , block3Grid , block4Grid , block5Grid , block6Grid , block7Grid , block8Grid , block9Grid};
-        Label[] guiBlockAmounts = {block0Amount , block1Amount , block2Amount , block3Amount , block4Amount , block5Amount , block6Amount , block7Amount , block8Amount , block9Amount};
+        Label[] guiBlockAmounts = {block0Amount , block1Amount , block2Amount , block3Amount , block4Amount , block5Amount , block6Amount , block7Amount , block8Amount , block9Amount, moveCountLabel};
         //Get blocks
         blockNumbers = myBoard.getBoardBlocks();
 
@@ -1216,6 +1247,7 @@ public class GameController {
                             guiBlockAmounts[blockIndex].setText("x" + blockNumbers[blockIndex]);
                             guiBlockGrids[blockIndex].setConstraints(canvas, i,j);
                             guiBlockGrids[blockIndex].getChildren().addAll(canvas);
+                            guiBlockAmounts[10].setText("Move Count: " + moveCount);
                         }
                     }
                 }
