@@ -7,12 +7,14 @@
 }
 
 .bar{
-    -fx-background-color: -fx-darkred;
-    -fx-border-radius: 2em;
+    -fx-background-color: linear-gradient(to right, -fx-darkpurple 23%, -fx-darkred 27%);
+
 }
 .button-bar{
-    -fx-background-color: -fx-darkorange;
+    -fx-background-color: linear-gradient(to right, green 30%, red 30%);;
 }
 .katamino-frame{
     -fx-background-color: -fx-lightorange;
+    -fx-height: "%100";
+    -fx-width: "%75";
 }  

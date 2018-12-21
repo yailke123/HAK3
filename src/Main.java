@@ -16,14 +16,14 @@ public class Main extends Application {
         System.out.println(myTimer.getTime());
 
 
-        Parent root = FXMLLoader.load(getClass().getResource("fxml/sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("fxml/test4.fxml"));
         this.primaryStage = primaryStage;
         primaryStage.setTitle("Katamino++");
         Scene primaryScene = new Scene(root);
         primaryStage.setScene(primaryScene);
-        primaryStage.setMaximized(true);
-        primaryStage.initStyle(StageStyle.TRANSPARENT);
-        primaryStage.initStyle(StageStyle.UNDECORATED);
+      //  primaryStage.setMaximized(true);
+     //   primaryStage.initStyle(StageStyle.TRANSPARENT);
+       // primaryStage.initStyle(StageStyle.UNDECORATED);
 
         primaryStage.show();
 
