@@ -326,6 +326,7 @@ public class GameController {
                                         boardCells[i][j].setFilled(false);
                                         boardPane.getChildren().get( j + i*20 +1).setStyle("-fx-background-color: grey");
 
+
                                     }
                                 }
                             }
@@ -436,12 +437,13 @@ public class GameController {
                             String cellColor = (Color.values()[boardCells[y][x].getColor()]).toString();
                             System.out.println(x + cellColor + y);
                             Pane canvas = new Pane();
-                            canvas.setStyle("-fx-background-color: " + cellColor);
 //                        canvas.setShape();
-                            canvas.setBorder(new Border(new BorderStroke(javafx.scene.paint.Color.RED, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+//                            canvas.setBorder(new Border(new BorderStroke(javafx.scene.paint.Color.RED, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 //                        System.out.println((int)source.getHeight()+ " " +source.getWidth() );
 //                        boardPane.add(canvas, x, y, (int)(source.getHeight()/19.0), (int)(source.getWidth()/19.0))
                             boardPane.getChildren().get( x + y*20 +1).setStyle("-fx-background-color: " + cellColor);
+                            boardPane.getChildren().get( x + y*20 +1).setStyle("-fx-background-color: " + cellColor);
+
                             //boardPane.add(canvas, x, y, 1, 1);
                             boardCells[y][x].setFilled(true);
                             blockNumbers[0]--;
@@ -468,21 +470,24 @@ public class GameController {
                                 && !boardCells[y-1][x].getFilled() && boardCells[y-1][x].getColor() != 1){
                             String cellColor = (Color.values()[boardCells[y][x].getColor()]).toString();
                             System.out.println(x + cellColor + y);
-                            Pane canvas = new Pane();
-                            canvas.setStyle("-fx-background-color: " + cellColor);
+//                            Pane canvas = new Pane();
+//                            canvas.setStyle("-fx-background-color: " + cellColor);
+//                            canvas.setBorder(new Border(new BorderStroke(javafx.scene.paint.Color.valueOf(cellColor), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
 //                        canvas.setShape();
-                            canvas.setBorder(new Border(new BorderStroke(javafx.scene.paint.Color.RED, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 //                        System.out.println((int)source.getHeight()+ " " +source.getWidth() );
 //                        boardPane.add(canvas, x, y, (int)(source.getHeight()/19.0), (int)(source.getWidth()/19.0))
                             //     boardPane.add(canvas, x, y, 1, 1);
-                            Pane canvas2 = new Pane();
-                            cellColor = (Color.values()[boardCells[y-1][x].getColor()]).toString();
-                            canvas2.setStyle("-fx-background-color: " + cellColor);
-//                        canvas.setShape();
-                            canvas2.setBorder(new Border(new BorderStroke(javafx.scene.paint.Color.RED, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+//                            Pane canvas2 = new Pane();
+//                            canvas2.setStyle("-fx-background-color: " + cellColor);
+////                        canvas.setShape();
+//                            canvas.setBorder(new Border(new BorderStroke(javafx.scene.paint.Color.valueOf(cellColor), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
                             //  boardPane.add(canvas2, x, y-1, 1, 1);
-                            boardPane.getChildren().get( x + y*20 +1).setStyle("-fx-background-color: " + cellColor);
-                            boardPane.getChildren().get( x + (y-1)*20 +1).setStyle("-fx-background-color: " + cellColor);
+                            boardPane.getChildren().get( x + y*20 +1).setStyle("-fx-background-color: " + cellColor);// + "; -fx-border-color: red" + "; -fx-border-width: 0,1,1,1;");
+//                            boardPane.getChildren().get( x + y*20 +1).setStyle("-fx-border-color: " + cellColor);//.setBorder(new Border(new BorderStroke(javafx.scene.paint.Color.valueOf(cellColor), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+                            cellColor = (Color.values()[boardCells[y-1][x].getColor()]).toString();
+                            boardPane.getChildren().get( x + (y-1)*20 +1).setStyle("-fx-background-color: " + cellColor);// + "; -fx-border-color: red" + "; -fx-border-width: 1,0,0,0;" );
+//                            boardPane.getChildren().get( x + (y-1)*20 +1).setStyle("-fx-border-color: " + cellColor);
                             boardCells[y][x].setFilled(true);
                             boardCells[y-1][x].setFilled(true);
                             blockNumbers[1] --;
@@ -1186,14 +1191,19 @@ public class GameController {
             for (int j = 0; j < 20; j++) {
 //                String cellColor = "-fx-background-color: " +(Color.values()[boardCells[i][j].getColor()]).toString() + ";";
                 String cellColor;
+                Pane canvas = new Pane();
                 if ((Color.values()[boardCells[i][j].getColor()]).toString().equals("WHITE"))
                     cellColor= "-fx-background-color: WHITE;";
-                else
-                    cellColor= "-fx-background-color: GRAY;";
+                else {
+                    cellColor = "-fx-background-color: GRAY;"; //+ "; -fx-border-color: red" + "; -fx-border-width: 1";
+//                    canvas.setStyle("-fx-background-color: " + cellColor + "; -fx-border-color: red" + "; -fx-border-width: 15");
+
+                    canvas.setBorder(new Border(new BorderStroke(javafx.scene.paint.Color.RED, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+                }
+
                 System.out.println(i + cellColor + j);
-                Pane canvas = new Pane();
+
                 canvas.setStyle(cellColor);
-                canvas.setBorder(new Border(new BorderStroke(javafx.scene.paint.Color.RED, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
                 boardPane.setConstraints(canvas, j, i);
                 boardPane.getChildren().addAll(canvas);
