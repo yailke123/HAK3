@@ -18,18 +18,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+
 public class Controller {
 
+    public String userName;
     public Button startButton, leaderboardButton, createBoardButton, exitButton, soundButton;
 
     public void startButtonClicked()throws Exception{
 
-        TextInputDialog dialog = new TextInputDialog("");
-        dialog.setTitle("");
-        dialog.setHeaderText("");
-        dialog.setContentText("Please enter your name:");
-        Optional<String> result = dialog.showAndWait();
-        result.ifPresent(name -> System.out.println("Your name: " + name));
 
 
 

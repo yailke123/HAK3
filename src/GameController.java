@@ -26,10 +26,7 @@ import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import org.zeroturnaround.zip.ZipUtil;
 import javax.swing.*;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,10 +48,12 @@ public class GameController {
     public String boardName = "";
     public Timer myTimer;
     public Button back;
+    public String userName;
     private int[] blockNumbers;
     private int column2;
     private int row2;
     private int moveCount = 0;
+    public Leaderboard leaderboard;
     public GridPane block0Grid , block1Grid , block2Grid , block3Grid , block4Grid , block5Grid , block6Grid , block7Grid , block8Grid , block9Grid ;
     public Label  block0Amount , block1Amount , block2Amount , block3Amount , block4Amount , block5Amount , block6Amount , block7Amount , block8Amount , block9Amount;
     private int[][] cellNos = new int[20][20];
@@ -121,6 +120,13 @@ public class GameController {
 //        dialog.setContentText("Please enter board name:");
 //        Optional<String> result = dialog.showAndWait();
 //        result.ifPresent(name -> boardName = name);
+        TextInputDialog dialog = new TextInputDialog("");
+        dialog.setTitle("");
+        dialog.setHeaderText("");
+        dialog.setContentText("Please enter your name:");
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(userName -> System.out.println("Your name: " + userName));
+        userName = result.get();
 
 
 
@@ -1155,14 +1161,27 @@ public class GameController {
 
                 //let the source know whether the image was successfully transferred and used
 
-                if (isGameOver()) {
-                    timeline.stop();
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Game Over");
-                    alert.setHeaderText("YOU WON :)");
-                    alert.setContentText("Congratulations!");
+//                if (isGameOver()) {
+//                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//                    alert.setTitle("Game Over");
+//                    alert.setHeaderText("YOU WON :)");
+//                    alert.setContentText("Congratulations!");
+//
+//                    alert.showAndWait();
+                try {
+                    if (isGameOver()) {
+                        timeline.stop();
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Game Over");
+                        alert.setHeaderText("YOU WON :)");
+                        alert.setContentText("Congratulations!");
+                        updateLeaderboard(moveCount);
+                        alert.showAndWait();
 
-                    alert.showAndWait();
+                    }
+                } catch (IOException e) {
+                    System.out.print("burdayım");
+                    e.printStackTrace();
                 }
                 event.setDropCompleted(success);
                 event.consume();
@@ -1334,7 +1353,7 @@ public class GameController {
 
     }
 
-    public boolean isGameOver(){
+    public boolean isGameOver() throws IOException{
         Cell[][] allCells =myBoard.getBoardCells();
         for(int i = 0; i < 20; i++){
             for(int j = 0; j <20; j++){
@@ -1344,6 +1363,7 @@ public class GameController {
                 }
             }
         }
+
         return true;
     }
     public void gameIsOver()
@@ -1353,7 +1373,50 @@ public class GameController {
         alert.setHeaderText("TIME OVER :)");
         alert.setContentText("???!");
 
-        alert.show(); }
+        alert.show();
+    }
+    public void updateLeaderboard( int score) throws IOException{
+        leaderboard = new Leaderboard();
+        leaderboard.getLeaderboard(myBoard.getBoardLevel());
+        User[] leaderboardArr = leaderboard.getLeaderboardArray();
+        User[] newLeaderboard = new User[10];
+        for( int i = 0; i < 10; i++)
+            newLeaderboard[i] = new User(null,1000);
+        int index = 0;
+        while ( index < 10 ) {
+            System.out.println(leaderboardArr[index]);
+            if (score < leaderboardArr[index].getScore()) {
+                newLeaderboard[index].setUsername(userName);
+                newLeaderboard[index].setScore(score);
+
+                while (index < 9 && leaderboardArr[index].getScore() != 1000) {
+                    newLeaderboard[index + 1].setUsername(leaderboardArr[index].getUsername());
+                    newLeaderboard[index + 1].setScore(leaderboardArr[index].getScore());
+                    index++;
+                }
+                String dir = System.getProperty("user.dir");
+                String path = dir + "\\src\\leaderboards\\leaderboard"  + myBoard.getBoardLevel() + ".txt";
+                File file = new File(path);
+                try {
+                    FileWriter fWriter = new FileWriter(file.getAbsoluteFile());
+                    BufferedWriter bWriter = new BufferedWriter(fWriter);
+                    for (int i = 0; i < 10; i++) {
+                        bWriter.write(newLeaderboard[i].getUsername() + "\n" + newLeaderboard[i].getScore() + "\n");
+                    }
+                    bWriter.close();
+                    leaderboard.getLeaderboard(myBoard.getBoardLevel());
+                    return;
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+            }
+            System.out.println(leaderboardArr[index].getUsername());
+            newLeaderboard[index] = leaderboardArr[index];
+            index++;
+        }
+
+    }
+
     public void zipIt(String zipFile, String sourceFolder, ObservableList<String> fileList){
         byte[] buffer = new byte[1024];
         String source = new File(sourceFolder).getName();

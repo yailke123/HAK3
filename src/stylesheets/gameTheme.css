@@ -1,0 +1,11 @@
+*{
+    -fx-darkpurple : #4F2E37;
+    -fx-darkred : #A5413F;
+    -fx-darkorange : #E86740;
+    -fx-orange: #F99446;
+    -fx-lightorange: #F99446;
+}
+
+.main-frame{
+    -fx-background-color : -fx-darkpurple;
+}

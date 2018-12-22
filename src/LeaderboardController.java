@@ -19,6 +19,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -32,8 +33,24 @@ public class LeaderboardController {
     @FXML
     private JFXTreeTableView<Person> hardLeaderboard;
     public Button back;
+    private Leaderboard easy;
+    private Leaderboard medium;
+    private Leaderboard hard;
 
-    public void initialize() {
+    public void initialize() throws IOException {
+
+        easy = new Leaderboard();
+        medium = new Leaderboard();
+        hard = new Leaderboard();
+
+        easy.getLeaderboard(1);
+        medium.getLeaderboard(2);
+        hard.getLeaderboard(3);
+
+        User[] easyArr = easy.getLeaderboardArray();
+        User[] mediumArr = medium.getLeaderboardArray();
+        User[] hardArr = hard.getLeaderboardArray();
+
        //EASY POS COLUMN
         JFXTreeTableColumn<Person, String> pos = new JFXTreeTableColumn<>("Position");
         pos.setPrefWidth(100);
@@ -68,16 +85,12 @@ public class LeaderboardController {
 
         //EASY BOARD FILLING
         ObservableList<Person> persons = FXCollections.observableArrayList();
-        persons.add(new Person("Hikmet", "3", "1th"));
-        persons.add(new Person("Ahmet", "6" , "2nd"));
-        persons.add(new Person("Kermet", "12", "3rd"));
-        persons.add(new Person("Melset", "41", "4th"));
-        persons.add(new Person("Jevşet", "96", "5th"));
-        persons.add(new Person("zestet", "123", "6th"));
-        persons.add(new Person("Histet", "334", "7th"));
-        persons.add(new Person("Jevşet", "96", "8th"));
-        persons.add(new Person("zestet", "123", "9th"));
-        persons.add(new Person("Histet", "334", "10th"));
+        for(int i = 0; i< 10; i++){
+            if( easyArr[i].getScore() == 1000)
+                break;
+            persons.add(new Person(easyArr[i].getUsername(), easyArr[i].getScore()+"", (i+1)+"."));
+        }
+
 
         final TreeItem<Person> root = new RecursiveTreeItem<Person>(persons, RecursiveTreeObject::getChildren);
         easyLeaderboard.getColumns().setAll(pos, name,score);
@@ -118,16 +131,11 @@ public class LeaderboardController {
 
         //MEDIUM BOARD FILLING
         ObservableList<Person> persons2 = FXCollections.observableArrayList();
-        persons2.add(new Person("Hikmet", "3", "1th"));
-        persons2.add(new Person("Ahmet", "6" , "2nd"));
-        persons2.add(new Person("Kermet", "12", "3rd"));
-        persons2.add(new Person("Melset", "41", "4th"));
-        persons2.add(new Person("Jevşet", "96", "5th"));
-        persons2.add(new Person("zestet", "123", "6th"));
-        persons2.add(new Person("Histet", "334", "7th"));
-        persons2.add(new Person("Jevşet", "96", "8th"));
-        persons2.add(new Person("zestet", "123", "9th"));
-        persons2.add(new Person("Histet", "334", "10th"));
+        for(int i = 0; i< 10; i++){
+            if( mediumArr[i].getScore() == 1000)
+                break;
+            persons2.add(new Person(mediumArr[i].getUsername(), mediumArr[i].getScore()+"", (i+1)+"."));
+        }
 
         final TreeItem<Person> root2 = new RecursiveTreeItem<Person>(persons2, RecursiveTreeObject::getChildren);
         mediumLeaderboard.getColumns().setAll(pos2, name2,score2);
@@ -168,16 +176,11 @@ public class LeaderboardController {
 
         //HARD BOARD FILLING
         ObservableList<Person> persons3 = FXCollections.observableArrayList();
-        persons3.add(new Person("Hikmet", "3", "1th"));
-        persons3.add(new Person("Ahmet", "6" , "2nd"));
-        persons3.add(new Person("Kermet", "12", "3rd"));
-        persons3.add(new Person("Melset", "41", "4th"));
-        persons3.add(new Person("Jevşet", "96", "5th"));
-        persons3.add(new Person("zestet", "123", "6th"));
-        persons3.add(new Person("Histet", "334", "7th"));
-        persons3.add(new Person("Jevşet", "96", "8th"));
-        persons3.add(new Person("zestet", "123", "9th"));
-        persons3.add(new Person("Histet", "334", "10th"));
+        for(int i = 0; i< 10; i++){
+            if( hardArr[i].getScore() == 1000)
+                break;
+            persons3.add(new Person(hardArr[i].getUsername(), hardArr[i].getScore()+"", (i+1)+"."));
+        }
 
         final TreeItem<Person> root3 = new RecursiveTreeItem<Person>(persons3, RecursiveTreeObject::getChildren);
         hardLeaderboard.getColumns().setAll(pos3, name3,score3);
@@ -201,7 +204,7 @@ public class LeaderboardController {
     }
 
     public void backClicked()throws Exception{
-        Parent loader = FXMLLoader.load(getClass().getResource("fxml/sample.fxml"));//Creates a Parent called loader and assign it as leaderboard.FXML
+        Parent loader = FXMLLoader.load(getClass().getResource("fxml/test4.fxml"));//Creates a Parent called loader and assign it as leaderboard.FXML
         Scene scene = new Scene(loader); //This creates a new scene called scene and assigns it as the Sample.FXML document which was named "loader"
         Stage app_stage = (Stage)back.getScene().getWindow();
         app_stage.setScene(scene); //This sets the scene as scene
