@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="0.0" prefHeight="1080.0" prefWidth="1920.0" styleClass="background" stylesheets="@../stylesheets/leaderboardTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LeaderboardController">
+<StackPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="0.0" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../stylesheets/leaderboardTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LeaderboardController">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="1080.0" prefWidth="1920.0">
          <center>
@@ -24,7 +24,6 @@
                            <children>
                               <JFXTreeTableView fx:id="easyLeaderboard" layoutX="636.0" layoutY="20.0" prefHeight="700.0" prefWidth="650.0" />
                            </children></AnchorPane>
-
                     </content>
                   </Tab>
                   <Tab text="MEDIUM">

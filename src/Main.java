@@ -33,7 +33,7 @@ public class Main extends Application {
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.initStyle(StageStyle.UNDECORATED);
 
-        primaryStage.show();
+        primaryStage.show();//
 
     }
 

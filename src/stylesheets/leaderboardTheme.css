@@ -13,7 +13,7 @@
 .background{
     -fx-background-image: url('../pic/menu3.png');
 
-    -fx-background-size: auto;
+    -fx-background-size: auto;;
 }
 //Tab Panelss
 .tab{

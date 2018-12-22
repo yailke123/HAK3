@@ -38,7 +38,7 @@ public class LeaderboardController {
     private Leaderboard hard;
 
     public void initialize() throws IOException {
-
+//
         easy = new Leaderboard();
         medium = new Leaderboard();
         hard = new Leaderboard();
@@ -140,7 +140,7 @@ public class LeaderboardController {
         final TreeItem<Person> root2 = new RecursiveTreeItem<Person>(persons2, RecursiveTreeObject::getChildren);
         mediumLeaderboard.getColumns().setAll(pos2, name2,score2);
         mediumLeaderboard.setRoot(root2);
-        mediumLeaderboard.setShowRoot(false);
+        mediumLeaderboard.setShowRoot(false);;
 
         //HARD POS COLUMN
         JFXTreeTableColumn<Person, String> pos3 = new JFXTreeTableColumn<>("Position");

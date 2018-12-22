@@ -295,7 +295,7 @@ public class GameController {
         app_stage.setScene(scene); //This sets the scene as scene
         app_stage.show(); // this shows the scene
     }
-
+//
     private void addEventDetectorsBoard() throws Exception{
 
         Cell[][] boardCells = myBoard.getBoardCells();

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.stage.Screen?>
+
+<GridPane styleClass="katamino-frame" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="629.0" minWidth="10.0" prefWidth="479.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1440.0" minWidth="10.0" prefWidth="1096.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="270.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="270.0" minHeight="10.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="270.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="270.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <AnchorPane maxHeight="1080.0" maxWidth="1920.0" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <AnchorPane maxHeight="1080.0" maxWidth="1920.0" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <AnchorPane maxHeight="1080.0" maxWidth="1920.0" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="270.0" prefWidth="617.0" styleClass="bar" GridPane.rowIndex="3">
+         <children>
+            <AnchorPane maxHeight="1080.0" maxWidth="1920.0" minHeight="130.0" minWidth="479.0" prefHeight="270.0" prefWidth="479.0" styleClass="button-bar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <JFXButton fx:id="exitButton" alignment="BASELINE_LEFT" graphicTextGap="75.0" maxHeight="270.0" maxWidth="800.0" minHeight="0.0" minWidth="479.0" onMouseClicked="#exitButtonClicked" prefHeight="270.0" prefWidth="479.0" style="-fx-background-color: darkorange;" text="             EXIT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="System Bold" size="40.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+            <AnchorPane id="bar" maxHeight="270.0" maxWidth="300.0" minHeight="0.0" minWidth="0.0" prefHeight="270.0" prefWidth="138.0" style="-fx-background-color: darkred;" AnchorPane.leftAnchor="0.0">
+               <children>
+                  <ImageView fitHeight="87.0" fitWidth="84.0" layoutX="23.0" layoutY="92.0" AnchorPane.bottomAnchor="105.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="106.0" GridPane.rowIndex="3">
+                     <image>
+                        <Image url="@../pic/exit.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="270.0" prefWidth="617.0" styleClass="bar" GridPane.rowIndex="2">
+         <children>
+            <AnchorPane styleClass="button-bar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <JFXButton fx:id="leaderboardButton" alignment="BASELINE_LEFT" graphicTextGap="75.0" maxHeight="270.0" maxWidth="800.0" minHeight="0.0" minWidth="479.0" onMouseClicked="#leaderboardClicked" prefHeight="270.0" prefWidth="479.0" style="-fx-background-color: darkorange;" text="            Leaderboard" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="40.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="270.0" maxWidth="300.0" minHeight="0.0" minWidth="0.0" prefHeight="270.0" prefWidth="138.0" style="-fx-background-color: darkred;" AnchorPane.leftAnchor="0.0">
+               <children>
+                  <ImageView fitHeight="78.0" fitWidth="75.0" layoutX="23.0" layoutY="106.0" AnchorPane.bottomAnchor="97.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="106.0" GridPane.rowIndex="2">
+                     <image>
+                        <Image url="@../pic/rank.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="270.0" prefWidth="617.0" styleClass="bar" GridPane.rowIndex="1">
+         <children>
+            <AnchorPane prefHeight="270.0" prefWidth="619.0" styleClass="button-bar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <JFXButton fx:id="createBoardButton" alignment="BASELINE_LEFT" graphicTextGap="75.0" maxHeight="270.0" maxWidth="800.0" minHeight="0.0" minWidth="479.0" onMouseClicked="#createBoardButtonClicked" prefHeight="270.0" prefWidth="479.0" style="-fx-background-color: darkorange;" text="             Create Board" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <font>
+                        <Font name="System Bold" size="40.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="270.0" maxWidth="300.0" minHeight="0.0" minWidth="0.0" prefHeight="270.0" prefWidth="138.0" style="-fx-background-color: darkred;" AnchorPane.leftAnchor="0.0">
+               <children>
+                  <ImageView fitHeight="87.0" fitWidth="75.0" layoutX="27.0" layoutY="99.0" AnchorPane.bottomAnchor="84.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="99.0">
+                     <image>
+                        <Image url="@../pic/pencil-edit-button.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="270.0" prefWidth="617.0" styleClass="bar">
+         <children>
+            <AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <JFXButton fx:id="startButton" alignment="BASELINE_LEFT" graphicTextGap="75.0" maxHeight="270.0" maxWidth="800.0" minHeight="0.0" minWidth="479.0" onMouseClicked="#startButtonClicked" prefHeight="270.0" prefWidth="479.0" style="-fx-background-color: darkorange;" text="              Start Game" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <font>
+                        <Font name="System Bold" size="40.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="270.0" maxWidth="300.0" minHeight="0.0" minWidth="0.0" prefHeight="270.0" prefWidth="138.0" style="-fx-background-color: darkred;" AnchorPane.leftAnchor="0.0">
+               <children>
+                  <ImageView fitHeight="87.0" fitWidth="75.0" layoutX="27.0" layoutY="90.0" AnchorPane.bottomAnchor="77.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="106.0">
+                     <image>
+                        <Image url="@../pic/play-button.png" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D minX="20.0" minY="20.0" />
+                     </viewport>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</GridPane>
