@@ -135,11 +135,11 @@
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="40.0" spacing="10.0">
                      <children>
-                        <Label fx:id="block0Amount" prefHeight="60.0" prefWidth="50.0" text="Label" />
-                        <Label fx:id="block1Amount" prefHeight="60.0" prefWidth="50.0" text="Label" />
-                        <Label fx:id="block2Amount" prefHeight="60.0" prefWidth="50.0" text="Label" />
-                        <Label fx:id="block3Amount" prefHeight="60.0" prefWidth="50.0" text="Label" />
-                        <Label fx:id="block4Amount" prefHeight="60.0" prefWidth="50.0" text="Label" />
+                        <Label fx:id="block0Amount" prefHeight="60.0" prefWidth="50.0" text="" />
+                        <Label fx:id="block1Amount" prefHeight="60.0" prefWidth="50.0" text="" />
+                        <Label fx:id="block2Amount" prefHeight="60.0" prefWidth="50.0" text="" />
+                        <Label fx:id="block3Amount" prefHeight="60.0" prefWidth="50.0" text="" />
+                        <Label fx:id="block4Amount" prefHeight="60.0" prefWidth="50.0" text="" />
                      </children>
                      <opaqueInsets>
                         <Insets />
@@ -211,11 +211,11 @@
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="40.0" spacing="10.0">
                      <children>
-                        <Label fx:id="block5Amount" prefHeight="60.0" prefWidth="50.0" text="Label" />
-                        <Label fx:id="block6Amount" prefHeight="60.0" prefWidth="50.0" text="Label" />
-                        <Label fx:id="block7Amount" prefHeight="60.0" prefWidth="50.0" text="Label" />
-                        <Label fx:id="block8Amount" prefHeight="60.0" prefWidth="50.0" text="Label" />
-                        <Label fx:id="block9Amount" prefHeight="60.0" prefWidth="50.0" text="Label" />
+                        <Label fx:id="block5Amount" prefHeight="60.0" prefWidth="50.0" text="" />
+                        <Label fx:id="block6Amount" prefHeight="60.0" prefWidth="50.0" text="" />
+                        <Label fx:id="block7Amount" prefHeight="60.0" prefWidth="50.0" text="" />
+                        <Label fx:id="block8Amount" prefHeight="60.0" prefWidth="50.0" text="" />
+                        <Label fx:id="block9Amount" prefHeight="60.0" prefWidth="50.0" text="" />
                      </children>
                   </VBox>
                </children>
