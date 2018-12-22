@@ -28,10 +28,8 @@ import org.zeroturnaround.zip.ZipUtil;
 import javax.swing.*;
 import java.io.*;
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -280,7 +278,7 @@ public class GameController {
         createBlocks();
         Stage app_stage = new Stage();
         Time ege = new Time();
-        ege.setTime(10);
+        ege.setTime(100);
         ege.start(app_stage);
         ege.addlabel(timerLabel);
 
@@ -329,7 +327,7 @@ public class GameController {
 
     public void backClicked()throws Exception{
 //        myTimer.cancel();
-        Parent loader = FXMLLoader.load(getClass().getResource("fxml/sample.fxml"));//Creates a Parent called loader and assign it as leaderboard.FXML
+        Parent loader = FXMLLoader.load(getClass().getResource("fxml/test4.fxml"));//Creates a Parent called loader and assign it as leaderboard.FXML
         Scene scene = new Scene(loader); //This creates a new scene called scene and assigns it as the Sample.FXML document which was named "loader"
         Stage app_stage = (Stage)back.getScene().getWindow();
         app_stage.setScene(scene); //This sets the scene as scene
@@ -350,7 +348,7 @@ public class GameController {
 
                 target.setOnDragDetected(new EventHandler<MouseEvent>() {
                     public void handle(MouseEvent event) {
-                        if(target.getStyle().equals("-fx-background-color: grey")){
+                        if(target.getStyle().equals("-fx-background-color: grey"+"; -fx-border-color: RED;")){
                             return;
                         }
                         //Drag was detected, start drap-and-drop gesture
@@ -371,7 +369,7 @@ public class GameController {
                                         block = blockNo[i][j];
                                         System.out.println(i +" " + j);
                                         boardCells[i][j].setFilled(false);
-                                        boardPane.getChildren().get( j + i*20 +1).setStyle("-fx-background-color: grey");
+                                        boardPane.getChildren().get( j + i*20 +1).setStyle("-fx-background-color: grey"+"; -fx-border-color: RED;");
 
 
                                     }
@@ -1170,6 +1168,7 @@ public class GameController {
 //                    alert.showAndWait();
                 try {
                     if (isGameOver()) {
+                        timerLabel.setVisible(false);
                         timeline.stop();
                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
                         alert.setTitle("Game Over");

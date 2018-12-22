@@ -6,12 +6,12 @@ Mustafa
 1
 rt
 1
+a
+1
+a
+1
 ww
 12
-null
-1000
-null
-1000
 null
 1000
 null
