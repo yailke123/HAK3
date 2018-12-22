@@ -289,7 +289,7 @@ public class GameController {
     }
 
     public void backClicked()throws Exception{
-        Parent loader = FXMLLoader.load(getClass().getResource("fxml/test4.fxml"));//Creates a Parent called loader and assign it as leaderboard.FXML
+        Parent loader = FXMLLoader.load(getClass().getResource("fxml/new.fxml"));//Creates a Parent called loader and assign it as leaderboard.FXML
         Scene scene = new Scene(loader); //This creates a new scene called scene and assigns it as the Sample.FXML document which was named "loader"
         Stage app_stage = (Stage)back.getScene().getWindow();
         app_stage.setScene(scene); //This sets the scene as scene

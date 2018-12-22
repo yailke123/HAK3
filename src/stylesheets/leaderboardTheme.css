@@ -2,42 +2,51 @@
     -fx-darkpurple : #4F2E37;
     -fx-darkred : #A5413F;
     -fx-darkorange : #E86740;
-    -fx-orange: #F99446;
-    -fx-lightorange: #F99446;
-}
 
+    -fx-lightorange: #F99446;
+         -fx-pink : #FF008A;
+         -fx-lightgreen :  #08FC77;
+         -fx-lightblue : #06BCFF;
+         -fx-purple:  	#A10080;
+         -fx-orange: #FF9E06;
+}
+.background{
+    -fx-background-image: url('../pic/menu3.png');
+
+    -fx-background-size: auto;
+}
 //Tab Panelss
 .tab{
-    -fx-background-color: -fx-darkpurple;
+
     -fx-pref-width : 636;
     -fx-pref-height : 100;
 }
 .tab-header-background{
-    -fx-background-color: -fx-darkpurple;
+
 }
 .main-header{
-    -fx-background-color: -fx-darkpurple;
+
 }
 .tab-easy{
-    -fx-background-color: -fx-darkred;
+    -fx-background-color: -fx-lightgreen;
 }
 .tab-medium{
-    -fx-background-color: -fx-darkred;
+    -fx-background-color: -fx-lightgreen;
 }
 .tab-hard{
-    -fx-background-color: -fx-darkred;
+    -fx-background-color: -fx-lightgreen;
 }
 
 
 .tree-table-view{
     -fx-tree-table-color: black;
-    -fx-border-color: -fx-darkred;
+    -fx-border-color: -fx-orange;
      -fx-alignment: center ;
 
 }
 
 .tree-table-view:focused .tree-table-row-cell:selected {
-    -fx-background-color: -fx-darkpurple  ;
+    -fx-background-color: -fx-lightgreen  ;
 
 }
 
