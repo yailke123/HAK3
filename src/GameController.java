@@ -78,7 +78,7 @@ public class GameController {
         for (int i = 0; i < listOfFiles.length; i++) {
             if (listOfFiles[i].isDirectory()){
                 myBoard = new Board(System.getProperty(("user.dir"))+ "/src/boards/" + listOfFiles[i].getName() + "/" + listOfFiles[i].getName());
-                fileNames.add(listOfFiles[i].getName() + " (" + Level.values()[myBoard.getBoardLevel()] +")") ;
+                fileNames.add(listOfFiles[i].getName() + " (" + Level.values()[myBoard.getBoardLevel()-1] +")") ;
             }
         }
 
@@ -888,7 +888,7 @@ public class GameController {
                         if (blockGrid[i][j].getVisible()){
                             System.out.print(blockGrid[i][j].getVisible() + ",");
                             Pane canvas = new Pane();
-                            canvas.setStyle("-fx-background-color: RED;");
+                            canvas.setStyle("-fx-background-color: DEEPPINK;");
                             canvas.setBorder(new Border(new BorderStroke(javafx.scene.paint.Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
                             guiBlockAmounts[blockIndex].setText("x" + blockNumbers[blockIndex]);
                             guiBlockGrids[blockIndex].setConstraints(canvas, i,j);
