@@ -243,7 +243,7 @@
                <font>
                   <Font name="System Bold" size="25.0" />
                </font></JFXButton>
-            <JFXButton fx:id="test" layoutX="546.0" layoutY="21.0" mnemonicParsing="false" onMouseClicked="#testClicked" prefHeight="60.0" prefWidth="90.0" text="Save" textFill="WHITE">
+            <JFXButton fx:id="test" layoutX="546.0" layoutY="21.0" mnemonicParsing="false" onMouseClicked="#testClicked" prefHeight="60.0" prefWidth="166.0" text="Save" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="25.0" />
                </font></JFXButton>
@@ -300,7 +300,7 @@
          <children>
             <Label layoutX="9.0" prefHeight="99.0" prefWidth="978.0" text="Press and hold shift and drag the cursor on the grid to paint cells">
                <font>
-                  <Font name="System Bold" size="32.0" />
+                  <Font name="System Bold" size="29.0" />
                </font>
             </Label>
          </children>

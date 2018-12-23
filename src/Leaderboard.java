@@ -15,7 +15,7 @@ public class Leaderboard {
     public void getLeaderboard(int level)throws IOException{
         String myLine = null;
         String dir = System.getProperty("user.dir");
-        FileReader input = new FileReader(dir + "\\src\\leaderboards\\leaderboard" + level + ".txt");
+        FileReader input = new FileReader(dir + "/src/leaderboards/leaderboard" + level + ".txt");
         BufferedReader bufRead = new BufferedReader(input);
         int i = 0;
         while ( (myLine = bufRead.readLine()) != null )
