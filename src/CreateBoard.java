@@ -188,7 +188,7 @@ public class CreateBoard {
         window.showAndWait();
         BorderPane bp = new BorderPane();
         bp.setCenter(grid);
-        Scene scene2 = new Scene(bp, 400, 400);
+        Scene scene2 = new Scene(bp, 600, 600);
 
          takeSnapShot(scene2, dir);
          try {
