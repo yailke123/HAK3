@@ -213,7 +213,7 @@ public class GameController {
         //Visual Timer Init
         Stage app_stage = new Stage();
         Time ege = new Time();
-        ege.setTime(100);
+        ege.setTime(300);
         ege.start(app_stage);
         ege.addlabel(timerLabel);
 

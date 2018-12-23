@@ -122,16 +122,16 @@ public class CreateBoard {
 
     public void initialize() {
         //initializing choiceboxes for blcoks
-        blockNum0.getItems().addAll(0,1,2,3,4,5,6,7,8,9,10); blockNum0.setValue(0);
-        blockNum1.getItems().addAll(0,1,2,3,4,5,6,7,8,9,10); blockNum1.setValue(0);
-        blockNum2.getItems().addAll(0,1,2,3,4,5,6,7,8,9,10); blockNum2.setValue(0);
-        blockNum3.getItems().addAll(0,1,2,3,4,5,6,7,8,9,10); blockNum3.setValue(0);
-        blockNum4.getItems().addAll(0,1,2,3,4,5,6,7,8,9,10); blockNum4.setValue(0);
-        blockNum5.getItems().addAll(0,1,2,3,4,5,6,7,8,9,10); blockNum5.setValue(0);
-        blockNum6.getItems().addAll(0,1,2,3,4,5,6,7,8,9,10); blockNum6.setValue(0);
-        blockNum7.getItems().addAll(0,1,2,3,4,5,6,7,8,9,10); blockNum7.setValue(0);
-        blockNum8.getItems().addAll(0,1,2,3,4,5,6,7,8,9,10); blockNum8.setValue(0);
-        blockNum9.getItems().addAll(0,1,2,3,4,5,6,7,8,9,10); blockNum9.setValue(0);
+        blockNum0.getItems().addAll(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30); blockNum0.setValue(0);
+        blockNum1.getItems().addAll(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30); blockNum1.setValue(0);
+        blockNum2.getItems().addAll(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30); blockNum2.setValue(0);
+        blockNum3.getItems().addAll(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30); blockNum3.setValue(0);
+        blockNum4.getItems().addAll(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30); blockNum4.setValue(0);
+        blockNum5.getItems().addAll(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30); blockNum5.setValue(0);
+        blockNum6.getItems().addAll(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30); blockNum6.setValue(0);
+        blockNum7.getItems().addAll(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30); blockNum7.setValue(0);
+        blockNum8.getItems().addAll(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30); blockNum8.setValue(0);
+        blockNum9.getItems().addAll(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30); blockNum9.setValue(0);
        // levelSelection.getItems().addAll("Easy", "Medium","Hard");levelSelection.setValue("Easy");
 
 
