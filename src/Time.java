@@ -45,9 +45,9 @@ public class Time extends Application {
                 lb.setText( String.format("%02d:%02d",(int)totalSec , seconds%60 ));
                 if (seconds >10) {
                     rand = new Random();
-                    r = rand.nextInt(210);
-                    g = rand.nextInt(210);
-                    b = rand.nextInt(210);
+                    r = rand.nextInt(210)+45;
+                    g = rand.nextInt(210)+45;
+                    b = rand.nextInt(210)+45;
                     lb.setTextFill(Color.rgb(r, g, b));
                 }
                 else if (seconds >0 && seconds <=10)

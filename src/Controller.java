@@ -1,26 +1,24 @@
 
+import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.StageStyle;
 
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 
 public class Controller {
     public Button startButton, leaderboardButton, createBoardButton, exitButton, soundButton;
+
 
     public void startButtonClicked()throws Exception{
         Parent loader = FXMLLoader.load(getClass().getResource("fxml/game.fxml"));
@@ -78,6 +76,7 @@ public class Controller {
     public void soundButtonClicked(){
 
         if (soundButton.getText().equals("Sound On")) {
+
             soundButton.setText("Sound Off");
         }else{
             soundButton.setText("Sound On");

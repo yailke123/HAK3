@@ -342,7 +342,7 @@ public class CreateBoard {
                         if (blockGrid[i][j].getVisible()) {
                             System.out.print(blockGrid[i][j].getVisible() + ",");
                             Pane canvas = new Pane();
-                            canvas.setStyle("-fx-background-color: RED;");
+                            canvas.setStyle("-fx-background-color: DEEPPINK;");
                             canvas.setBorder(new Border(new BorderStroke(javafx.scene.paint.Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
                             guiBlockGrids[blockIndex].setConstraints(canvas, i, j);
                             guiBlockGrids[blockIndex].getChildren().addAll(canvas);
