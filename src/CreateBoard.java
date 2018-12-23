@@ -102,6 +102,8 @@ public class CreateBoard {
     private GridPane grid;
     @FXML
     private ChoiceBox<Integer> blockNum0,blockNum1,blockNum2,blockNum3,blockNum4,blockNum5,blockNum6,blockNum7,blockNum8,blockNum9;
+//    @FXML
+//    private ChoiceBox<String> levelSelection;
 
     //This method is used for creating level thumbnails by taking snapshots of the grid
     private void takeSnapShot(Scene scene, String board) {
@@ -120,16 +122,17 @@ public class CreateBoard {
 
     public void initialize() {
         //initializing choiceboxes for blcoks
-        blockNum0.getItems().addAll(0,1,2,3,4,5,6,7,8,9); blockNum0.setValue(0);
-        blockNum1.getItems().addAll(0,1,2,3,4,5,6,7,8,9); blockNum1.setValue(0);
-        blockNum2.getItems().addAll(0,1,2,3,4,5,6,7,8,9); blockNum2.setValue(0);
-        blockNum3.getItems().addAll(0,1,2,3,4,5,6,7,8,9); blockNum3.setValue(0);
-        blockNum4.getItems().addAll(0,1,2,3,4,5,6,7,8,9); blockNum4.setValue(0);
-        blockNum5.getItems().addAll(0,1,2,3,4,5,6,7,8,9); blockNum5.setValue(0);
-        blockNum6.getItems().addAll(0,1,2,3,4,5,6,7,8,9); blockNum6.setValue(0);
-        blockNum7.getItems().addAll(0,1,2,3,4,5,6,7,8,9); blockNum7.setValue(0);
-        blockNum8.getItems().addAll(0,1,2,3,4,5,6,7,8,9); blockNum8.setValue(0);
-        blockNum9.getItems().addAll(0,1,2,3,4,5,6,7,8,9); blockNum9.setValue(0);
+        blockNum0.getItems().addAll(0,1,2,3,4,5,6,7,8,9,10); blockNum0.setValue(0);
+        blockNum1.getItems().addAll(0,1,2,3,4,5,6,7,8,9,10); blockNum1.setValue(0);
+        blockNum2.getItems().addAll(0,1,2,3,4,5,6,7,8,9,10); blockNum2.setValue(0);
+        blockNum3.getItems().addAll(0,1,2,3,4,5,6,7,8,9,10); blockNum3.setValue(0);
+        blockNum4.getItems().addAll(0,1,2,3,4,5,6,7,8,9,10); blockNum4.setValue(0);
+        blockNum5.getItems().addAll(0,1,2,3,4,5,6,7,8,9,10); blockNum5.setValue(0);
+        blockNum6.getItems().addAll(0,1,2,3,4,5,6,7,8,9,10); blockNum6.setValue(0);
+        blockNum7.getItems().addAll(0,1,2,3,4,5,6,7,8,9,10); blockNum7.setValue(0);
+        blockNum8.getItems().addAll(0,1,2,3,4,5,6,7,8,9,10); blockNum8.setValue(0);
+        blockNum9.getItems().addAll(0,1,2,3,4,5,6,7,8,9,10); blockNum9.setValue(0);
+       // levelSelection.getItems().addAll("Easy", "Medium","Hard");levelSelection.setValue("Easy");
 
 
         //Save board button and its function
@@ -259,6 +262,7 @@ public class CreateBoard {
         ObservableList<Node> childrens = grid.getChildren();
         String style,color,lastValue;
         int colorNum;
+        int noOfBlocks = 0;
         try {
             PrintWriter writer;
             PrintWriter infowriter;
@@ -284,6 +288,7 @@ public class CreateBoard {
                         if (colorNum != 1) {
                             lastValue = "1" + colorNum;
                             writer.println(lastValue);
+                            noOfBlocks++;
                         }
                         else
                             writer.println("01");
@@ -307,6 +312,14 @@ public class CreateBoard {
             blockwriter.println(blockNum9.getValue());
 
             blockwriter.close();
+
+            if (noOfBlocks<25)
+            {infowriter.print(1);}
+            else if (noOfBlocks < 50)
+            {infowriter.print(2);}
+            else
+                infowriter.print(3);
+            infowriter.close();
         } catch (IOException e) {
             //do something
         }
