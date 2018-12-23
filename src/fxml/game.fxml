@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="1080.0" maxWidth="1920.0" minHeight="0.0" minWidth="0.0" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../stylesheets/gameTheme.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" styleClass="background"  fx:controller="GameController">
+<GridPane maxHeight="1080.0" maxWidth="1920.0" minHeight="0.0" minWidth="0.0" prefHeight="1080.0" prefWidth="1920.0" styleClass="background" stylesheets="@../stylesheets/gameTheme.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GameController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="1159.0" minWidth="10.0" prefWidth="1020.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="900.0" minWidth="10.0" prefWidth="900.0" />
@@ -81,22 +81,22 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="block1Amount" prefHeight="89.0" prefWidth="46.0" >
+                  <Label fx:id="block1Amount" prefHeight="89.0" prefWidth="46.0">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="block2Amount" prefHeight="90.0" prefWidth="50.0" >
+                  <Label fx:id="block2Amount" prefHeight="90.0" prefWidth="50.0">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="block3Amount" prefHeight="91.0" prefWidth="50.0" >
+                  <Label fx:id="block3Amount" prefHeight="91.0" prefWidth="50.0">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="block4Amount" prefHeight="91.0" prefWidth="50.0" >
+                  <Label fx:id="block4Amount" prefHeight="91.0" prefWidth="50.0">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -236,27 +236,27 @@
             </VBox>
             <VBox alignment="CENTER_LEFT" layoutX="611.0" maxHeight="947.0" prefHeight="825.0" prefWidth="150.0" spacing="10.0">
                <children>
-                  <Label fx:id="block5Amount" prefHeight="91.0" prefWidth="50.0" >
+                  <Label fx:id="block5Amount" prefHeight="91.0" prefWidth="50.0">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="block6Amount" prefHeight="90.0" prefWidth="50.0" >
+                  <Label fx:id="block6Amount" prefHeight="90.0" prefWidth="50.0">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="block7Amount" prefHeight="90.0" prefWidth="50.0" >
+                  <Label fx:id="block7Amount" prefHeight="90.0" prefWidth="50.0">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="block8Amount" prefHeight="91.0" prefWidth="50.0" >
+                  <Label fx:id="block8Amount" prefHeight="91.0" prefWidth="50.0">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="block9Amount" prefHeight="90.0" prefWidth="50.0" >
+                  <Label fx:id="block9Amount" prefHeight="90.0" prefWidth="50.0">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -284,14 +284,14 @@
       </AnchorPane>
       <AnchorPane maxHeight="100.0" prefHeight="41.0" prefWidth="1020.0" styleClass="main-header">
          <children>
-            <Label fx:id="timerLabel" layoutX="89.0" layoutY="28.0" prefHeight="58.0" prefWidth="355.0">
+            <Label fx:id="timerLabel" layoutX="276.0" layoutY="21.0" prefHeight="58.0" prefWidth="355.0">
                <font>
                   <Font name="System Bold" size="37.0" />
                </font>
             </Label>
-            <Label fx:id="moveCountLabel" layoutX="309.0" layoutY="30.0" prefHeight="33.0" prefWidth="355.0"  textFill="WHITE">
+            <Label fx:id="moveCountLabel" alignment="CENTER_RIGHT" layoutX="510.0" layoutY="21.0" prefHeight="33.0" prefWidth="355.0" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="37.0" />
+                  <Font name="System Bold" size="45.0" />
                </font>
             </Label>
          </children>
