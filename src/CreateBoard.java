@@ -1,9 +1,5 @@
-import javafx.beans.property.ObjectProperty;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -17,18 +13,11 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import javax.imageio.ImageIO;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class CreateBoard {
     public enum Color {
@@ -37,12 +26,10 @@ public class CreateBoard {
 
     public Button back, test;
     public GridPane block0Grid, block1Grid, block2Grid, block3Grid, block4Grid, block5Grid, block6Grid, block7Grid, block8Grid, block9Grid;
-    private String userBoardName;
-    private String dir;
+    private String userBoardName,dir;
     private String choosenColor = "DEEPPINK"; // inital color is pink
 
     private  String [] hints ={"Get Better","E = mc^2", "Use Shift and hover over cells to paint", "zego adam"};
-    //private ChoiceBox<Integer> blockNum1 = new ChoiceBox<>();//=  new ChoiceBox(FXCollections.observableArrayList(hints));
     public void hintClicked() throws Exception {
         Random rand  = new Random();
         int randomNum = rand.nextInt((hints.length));
@@ -55,7 +42,7 @@ public class CreateBoard {
     }
 
     public void backClicked() throws Exception {
-        Parent loader = FXMLLoader.load(getClass().getResource("fxml/sample.fxml"));//Creates a Parent called loader and assign it as leaderboard.FXML
+        Parent loader = FXMLLoader.load(getClass().getResource("fxml/sample.fxml"));//Creates a Parent called loader and assign it as sample.FXML
         Scene scene = new Scene(loader); //This creates a new scene called scene and assigns it as the Sample.FXML document which was named "loader"
         Stage app_stage = (Stage)back.getScene().getWindow();
         app_stage.setScene(scene); //This sets the scene as scene
@@ -107,7 +94,7 @@ public class CreateBoard {
     }
 
     public void clearClicked()throws Exception{
-        clear();
+         clear();
     }
 
 
@@ -116,7 +103,7 @@ public class CreateBoard {
     @FXML
     private ChoiceBox<Integer> blockNum0,blockNum1,blockNum2,blockNum3,blockNum4,blockNum5,blockNum6,blockNum7,blockNum8,blockNum9;
 
-
+    //This method is used for creating level thumbnails by taking snapshots of the grid
     private void takeSnapShot(Scene scene, String board) {
         WritableImage writableImage = new WritableImage((int)scene.getWidth(),(int)scene.getHeight());
         scene.snapshot(writableImage);
@@ -132,6 +119,7 @@ public class CreateBoard {
     }
 
     public void initialize() {
+        //initializing choiceboxes for blcoks
         blockNum0.getItems().addAll(0,1,2,3,4,5,6,7,8,9); blockNum0.setValue(0);
         blockNum1.getItems().addAll(0,1,2,3,4,5,6,7,8,9); blockNum1.setValue(0);
         blockNum2.getItems().addAll(0,1,2,3,4,5,6,7,8,9); blockNum2.setValue(0);
@@ -144,86 +132,77 @@ public class CreateBoard {
         blockNum9.getItems().addAll(0,1,2,3,4,5,6,7,8,9); blockNum9.setValue(0);
 
 
-
         //Save board button and its function
         test.setOnAction(event -> {TextField text = new TextField("Enter Level Name");
-            Stage window = new Stage();
+        Stage window = new Stage();
+
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.setTitle("Save Board");
+        window.setMinWidth(450);
+        window.setResizable(false);
+        Button saveButton = new Button ("Save");
+        final boolean[] saved = {false};
 
 
+        saveButton.setOnAction(e -> {
+          userBoardName = text.getText();
+          dir =System.getProperty("user.dir");
+          dir = dir  + "//src//boards//" + userBoardName;
+          File f = new File(dir);
+          int i = 0;
+          int len = dir.length();
+          while(f.exists() ) {
+                i++;
+                if(i>1)
+                    dir =dir.substring(0,len);
+                dir = dir +"("+i+")";
 
-            window.initModality(Modality.APPLICATION_MODAL);
-            window.setTitle("Save Board");
-            window.setMinWidth(450);
-            window.setResizable(false);
-            Button saveButton = new Button ("Save");
-            final boolean[] saved = {false};
+                f = new File(dir);
+          }
+          new File(dir).mkdirs();
 
+          createCustom(dir,userBoardName,i);
+          saved[0] =true;
 
-            saveButton.setOnAction(e -> {
-                //System.out.println(text.getText());
+          window.close();
+        });
+        VBox layout = new VBox(10);
+        layout.getChildren().addAll(text,saveButton);
+        layout.setAlignment(Pos.CENTER);
 
-                userBoardName = text.getText();
-                dir =System.getProperty("user.dir");
-                dir = dir  + "//src//boards//" + userBoardName;
-                File f = new File(dir);
-                int i = 0;
-                int len = dir.length();
-                while(f.exists() ) {
-                    i++;
-                    if(i>1)
-                        dir =dir.substring(0,len);
-                    dir = dir +"("+i+")";
+        Scene scene = new Scene (layout);
 
-                    f = new File(dir);
-                }
-                new File(dir).mkdirs();
+        window.setScene(scene);
+        window.showAndWait();
 
-                createCustom(dir,userBoardName,i);
-                saved[0] =true;
+        layout.getChildren().remove(text);
+        layout.getChildren().remove(saveButton);
+        if(saved[0])
+        {
+        Text success = new Text("Saved Successfully");
+        window.setTitle("Saved");
+        layout.getChildren().add(success);
+        window.showAndWait();
+        BorderPane bp = new BorderPane();
+        bp.setCenter(grid);
+        Scene scene2 = new Scene(bp, 400, 400);
 
-
-
-                window.close();
-
-            });
-            VBox layout = new VBox(10);
-            layout.getChildren().addAll(text,saveButton);
-            layout.setAlignment(Pos.CENTER);
-
-            Scene scene = new Scene (layout);
-
-
-            window.setScene(scene);
-            window.showAndWait();
-
-            layout.getChildren().remove(text);
-            layout.getChildren().remove(saveButton);
-            if(saved[0])
-            {
-                Text success = new Text("Saved Successfully");
-                window.setTitle("Saved");
-                layout.getChildren().add(success);
-                window.showAndWait();
-                //window.addEventHandler();
-                BorderPane bp = new BorderPane();
-                bp.setCenter(grid);
-                Scene scene2 = new Scene(bp, 400, 400);
-
-                takeSnapShot(scene2, dir);
-                try {
-                    backClicked();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                //clear();
-
-            }
+         takeSnapShot(scene2, dir);
+         try {
+            backClicked();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+            //clear();
+        }
         });
 
-        //Adding white panes to every grid
+        //drawing the blocks on the right side of the screen
+        createBlocks();
+
+        //Adding white panes to every grid in gridppane
         int numCols = 20;
         int numRows = 20;
-        createBlocks();
 
         for (int i = 0 ; i < numCols ; i++) {
             ColumnConstraints colConstraints = new ColumnConstraints();
@@ -250,37 +229,31 @@ public class CreateBoard {
         ObservableList<Node> childrens = grid.getChildren();
         for (Node node : childrens) {
             node.setStyle("-fx-background-color:WHITE");
-            node.setStyle("-fx-border-color: BLACK" );//-fx-border-insets: BLACK;");
+            node.setStyle("-fx-border-color: BLACK" );
         }
     }
-
+    //method used for coloring the board, the user color determines the color of the pane
     private void addPane(int colIndex, int rowIndex) {
         Pane pane = new Pane();
         pane.setOnMouseClicked(e -> {
             String color = "-fx-background-color:" + choosenColor + ";";
             pane.setStyle(color);
             if(choosenColor.equals("WHITE"))
-                pane.setStyle("-fx-border-color: BLACK" );//-fx-border-insets: BLACK;");
-            // System.out.println(pane.getStyle());
-            //System.out.printf("Mouse enetered cell [%d, %d]%n", colIndex, rowIndex);
+                pane.setStyle("-fx-border-color: BLACK" );
         });
 
         pane.addEventFilter(MouseEvent.MOUSE_MOVED, e -> {
-            // if( e.isPrimaryButtonDown() && e.isSecondaryButtonDown()) {
-            //    System.out.println( "Both down");
-            // } else
-            if( e.isShiftDown()) {
+             if( e.isShiftDown()) { //if shift is down the user can hover over multiple panes to color multiple panes
                 String color = "-fx-background-color:" + choosenColor + ";";
                 pane.setStyle(color);
-                //System.out.println(colIndex + " " + rowIndex + " " + grid.getChildren().get(rowIndex+20*colIndex).getStyle());
-                if(choosenColor.equals("WHITE"))
-                    pane.setStyle("-fx-border-color: BLACK" );//-fx-border-insets: BLACK;");
+                 if(choosenColor.equals("WHITE"))
+                     pane.setStyle("-fx-border-color: BLACK" );
             }
         });
-
         grid.add(pane, colIndex, rowIndex);
     }
 
+    //method for generating the files for custom boards
     private void createCustom(String directory,String name,int nameInt)
     {
         ObservableList<Node> childrens = grid.getChildren();
@@ -299,36 +272,17 @@ public class CreateBoard {
                 writer = new PrintWriter(directory + "//" + name + ".txt", "UTF-8");
                 infowriter = new PrintWriter(directory + "//" + name + "Info.txt", "UTF-8");
                 blockwriter = new PrintWriter(directory + "//" + name + "blocks.txt", "UTF-8");
-
-                /* for (Node node : childrens) {
-                style = node.getStyle();
-                if(style.length() > 20 && style.substring(0, 20).equals("-fx-background-color")) {
-                    color = style.substring(21,style.length()-1);
-                    colorNum = Color.valueOf(color).ordinal();
-                    if (colorNum != 1) {
-                        lastValue = "1" + colorNum;
-                        writer.println(lastValue);
-                    }
-                    else
-                        writer.println("01");
-                }
-                else
-                    writer.println("01");
-            }*/
             }Node node;
             //writing cell info
             for (int i = 0; i < 20; i++) {
                 for (int j = 0; j < 20; j++) {
                     node = childrens.get(i + (20 * j) + 1);
-                    //System.out.print("j is "+j+", i is " +i+ " ");
                     style = node.getStyle();
-                    //System.out.println(style);
                     if (style.length() > 20 && style.substring(0, 20).equals("-fx-background-color")) {
                         color = style.substring(21, style.length() - 1);
                         colorNum = Color.valueOf(color).ordinal();
                         if (colorNum != 1) {
                             lastValue = "1" + colorNum;
-                            //System.out.println(j+20*i  +" "+lastValue);
                             writer.println(lastValue);
                         }
                         else
@@ -340,7 +294,7 @@ public class CreateBoard {
             }
             writer.close();
 
-            //writing block info
+           //writing block info
             blockwriter.println(blockNum0.getValue());
             blockwriter.println(blockNum1.getValue());
             blockwriter.println(blockNum2.getValue());
@@ -362,17 +316,14 @@ public class CreateBoard {
     private void createBlocks() {
         //Get gui grids
         GridPane[] guiBlockGrids = {block0Grid, block1Grid, block2Grid, block3Grid, block4Grid, block5Grid, block6Grid, block7Grid, block8Grid, block9Grid};
-        //Label[] guiBlockAmounts = {block0Amount , block1Amount , block2Amount , block3Amount , block4Amount , block5Amount , block6Amount , block7Amount , block8Amount , block9Amount, moveCountLabel};
-        //Get blocks
-        int[] blockNumbers = {1, 1, 1, 1, 1, 1, 1, 1, 1,1};//myBoard.getBoardBlocks();
+
+        int[] blockNumbers = {1, 1, 1, 1, 1, 1, 1, 1, 1,1};
 
         for (int blockIndex = 0; blockIndex < 10; blockIndex++) {
             if (blockNumbers[blockIndex] != 0) {
                 Block myBlock = new Block(Block.BlockShape.values()[blockIndex]);
                 Cell[][] blockGrid = myBlock.getBlockShape();
-                List<ObjectProperty<EventHandler<? super MouseEvent>>> myList = new ArrayList<>();
 
-//                guiBlockGrids[blockIndex].setGridLinesVisible(true);
                 for (int i = 0; i < 3; i++) {
                     for (int j = 0; j < 3; j++) {
                         if (blockGrid[i][j].getVisible()) {
@@ -380,7 +331,6 @@ public class CreateBoard {
                             Pane canvas = new Pane();
                             canvas.setStyle("-fx-background-color: RED;");
                             canvas.setBorder(new Border(new BorderStroke(javafx.scene.paint.Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-                            //guiBlockAmounts[blockIndex].setText("x" + blockNumbers[blockIndex]);
                             guiBlockGrids[blockIndex].setConstraints(canvas, i, j);
                             guiBlockGrids[blockIndex].getChildren().addAll(canvas);
                         }
@@ -388,7 +338,5 @@ public class CreateBoard {
                 }
             }
         }
-
-
     }
 }
