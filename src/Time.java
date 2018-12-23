@@ -24,7 +24,7 @@ public class Time extends Application {
     @Override
     public void start(Stage primaryStage) {
         lb= new Label();
-        lb.setFont(Font.font("Helvetica", FontWeight.BOLD, 30));
+        lb.setFont(Font.font("Helvetica", FontWeight.BOLD, 50));
 
         doTime();
     }
@@ -51,7 +51,7 @@ public class Time extends Application {
                     lb.setTextFill(Color.rgb(r, g, b));
                 }
                 else if (seconds >0 && seconds <=10)
-                {lb.setTextFill(Color.RED);}
+                {lb.setTextFill(Color.WHITE);}
                 else if(seconds<=0){
                     time.stop();
                     lb.setText("Time Over");
