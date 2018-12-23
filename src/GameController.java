@@ -33,6 +33,9 @@ public class GameController {
     public enum Color {
         BLACK, WHITE, DEEPPINK, LIGHTGRAY, SPRINGGREEN, RED, YELLOW, DEEPSKYBLUE, PURPLE, ORANGE
     }
+    public enum Level {
+        Easy, Medium, Hard
+    }
     public Button back;
     public Label moveCountLabel, timerLabel;
     public GridPane boardPane, block0Grid , block1Grid , block2Grid , block3Grid , block4Grid , block5Grid , block6Grid , block7Grid , block8Grid , block9Grid ;
@@ -73,8 +76,10 @@ public class GameController {
         Button importButton = new Button("Import");
         Button exportButton = new Button("Export");
         for (int i = 0; i < listOfFiles.length; i++) {
-            if (listOfFiles[i].isDirectory())
-                fileNames.add(listOfFiles[i].getName());
+            if (listOfFiles[i].isDirectory()){
+                myBoard = new Board(System.getProperty(("user.dir"))+ "/src/boards/" + listOfFiles[i].getName() + "/" + listOfFiles[i].getName());
+                fileNames.add(listOfFiles[i].getName() + " (" + Level.values()[myBoard.getBoardLevel()] +")") ;
+            }
         }
 
         //Import button eventListener
@@ -111,7 +116,7 @@ public class GameController {
 
         //Export Button EventListener
         exportButton.setOnMouseClicked((event)->{
-            // parent component of the dialoglel
+            // parent component of the dialog
             JFrame parentFrame = new JFrame();
 
             JFileChooser fileChooser = new JFileChooser();
@@ -142,8 +147,8 @@ public class GameController {
         });
 
         //Choose board Screen Photo initialize
-        System.out.println("file:///" + System.getProperty("user.dir") + "/src/boards/"+fileNames.get(0)+"/board.png");
-        Image image = new Image("file:///" + System.getProperty("user.dir") + "/src/boards/"+fileNames.get(0)+"/board.png" , true);
+        System.out.println("file:///" + System.getProperty("user.dir") + "/src/boards/"+listOfFiles[0].getName()+"/board.png");
+        Image image = new Image("file:///" + System.getProperty("user.dir") + "/src/boards/"+listOfFiles[0].getName()+"/board.png" , true);
         ImageView boardImage = new ImageView();
         boardImage.setImage(image);
         boardImage.setFitHeight(350);
@@ -156,7 +161,13 @@ public class GameController {
             //changed
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                boardName = newValue;
+                if(newValue.endsWith("(Easy)"))
+                    boardName = newValue.substring(0,newValue.length()-7);
+                else if(newValue.endsWith("(Medium)"))
+                    boardName = newValue.substring(0,newValue.length()-9);
+                else if (newValue.endsWith("(Hard)"))
+                    boardName = newValue.substring(0,newValue.length()-7);
+
                 System.out.println("Path to board: "+ "boards/"+boardName+"/board.png");
                 Image image = new Image("file:///" + System.getProperty("user.dir") + "/src/boards/"+boardName+"/board.png", true);
                 boardImage.setImage(image);
@@ -836,7 +847,7 @@ public class GameController {
                 String cellColor;
                 Pane canvas = new Pane();
                 if ((Color.values()[boardCells[i][j].getColor()]).toString().equals("WHITE"))
-                    cellColor= "-fx-background-color: WHITE;";
+                    cellColor= "-fx-background-color: IVORY;";
                 else {
                     cellColor = "-fx-background-color: GRAY;" + "; -fx-border-color: red" + "; -fx-border-width: 1";
                 }
