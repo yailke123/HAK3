@@ -11,7 +11,7 @@
 }
 
 .main-header{
-    -fx-background-color: -fx-pink
+    -fx-background-color: -fx-lightgreen;
 }
 .background{
     -fx-background-color: ivory;

@@ -1,56 +1,175 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<StackPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="0.0" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../stylesheets/leaderboardTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LeaderboardController">
-   <children>
-      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="1080.0" prefWidth="1920.0">
-         <center>
-            <JFXTabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="1080.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
-               <tabs>
-                  <Tab text="EASY">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="tab-easy">
-                           <children>
-                              <JFXTreeTableView fx:id="easyLeaderboard" layoutX="636.0" layoutY="20.0" prefHeight="700.0" prefWidth="650.0" />
-                           </children></AnchorPane>
-                    </content>
-                  </Tab>
-                  <Tab text="MEDIUM">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="tab-medium">
-                        <children>
-                            <JFXTreeTableView fx:id="mediumLeaderboard" layoutX="636.0" layoutY="20.0" prefHeight="700.0" prefWidth="650.0" />
-                        </children></AnchorPane>
-                    </content>
-                  </Tab>
-                  <Tab text="HARD">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="tab-hard">
-                          <children>
-                              <JFXTreeTableView fx:id="hardLeaderboard" layoutX="636.0" layoutY="20.0" prefHeight="700.0" prefWidth="650.0" />
-                          </children></AnchorPane>
-                    </content>
-                  </Tab>
-               </tabs>
-            </JFXTabPane>
-         </center>
-         <top>
-            <AnchorPane prefHeight="150.0" prefWidth="1920.0" styleClass="main-header" BorderPane.alignment="CENTER">
-               <children>
-                  <JFXButton fx:id="back" layoutX="74.0" layoutY="60.0" onMouseClicked="#backClicked" text="BACK" textFill="WHITE" />
-               </children></AnchorPane>
-         </top>
-      </BorderPane>
-   </children>
-</StackPane>
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../stylesheets/leaderboardTheme.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LeaderboardController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="535.0" minHeight="10.0" prefHeight="223.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="974.0" minHeight="10.0" prefHeight="857.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <AnchorPane styleClass="main-header">
+            <children>
+                <Label layoutX="804.0" layoutY="30.0" minHeight="82.0" minWidth="333.0" prefHeight="82.0" prefWidth="333.0" text="Leaderboard" textFill="WHITE" AnchorPane.bottomAnchor="111.0" AnchorPane.leftAnchor="804.0" AnchorPane.rightAnchor="783.0" AnchorPane.topAnchor="30.0">
+                    <font>
+                        <Font name="System Bold" size="55.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+            <children>
+                <JFXTabPane layoutX="717.0" layoutY="-102.0" prefHeight="959.0" prefWidth="1920.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-102.0">
+                    <tabs>
+                        <Tab text="EASY">
+                            <content>
+                                <GridPane>
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1175.0" minWidth="10.0" prefWidth="683.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="597.0" minWidth="10.0" prefWidth="597.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="757.0" prefWidth="640.0" styleClass="background">
+                                            <children>
+                                                <ImageView fitHeight="778.0" fitWidth="1434.0" layoutX="107.0" layoutY="-35.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../pic/king.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </children></AnchorPane>
+                                        <AnchorPane maxWidth="-Infinity" prefHeight="200.0" prefWidth="640.0" styleClass="tab-easy" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                                            <children>
+                                                <JFXTreeTableView fx:id="easyLeaderboard" layoutX="26.0" layoutY="44.0" minHeight="0.0" minWidth="0.0" prefHeight="757.0" prefWidth="684.0" sortMode="ONLY_FIRST_LEVEL" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-44.0" AnchorPane.topAnchor="0.0" />
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane maxWidth="-Infinity" prefHeight="200.0" prefWidth="640.0" styleClass="background" GridPane.columnIndex="2">
+                                            <children>
+                                                <JFXButton fx:id="back" buttonType="RAISED" layoutX="179.0" layoutY="561.0" mnemonicParsing="false" onMouseClicked="#backClicked" prefHeight="272.0" prefWidth="404.0" text="." textFill="WHITE">
+                                                    <font>
+                                                        <Font name="System Bold" size="1.0" />
+                                                    </font>
+                                                    <graphic>
+                                                        <ImageView fitHeight="249.0" fitWidth="395.0">
+                                                            <image>
+                                                                <Image url="@../pic/backleader.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
+                                                </JFXButton>
+                                            </children></AnchorPane>
+                                    </children>
+                                </GridPane>
+                            </content>
+                        </Tab>
+                        <Tab text="MEDIUM">
+                            <content>
+                                <GridPane>
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1175.0" minWidth="10.0" prefWidth="683.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="597.0" minWidth="10.0" prefWidth="597.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="757.0" prefWidth="640.0" styleClass="background">
+                                            <children>
+                                                <ImageView fitHeight="778.0" fitWidth="1434.0" layoutX="107.0" layoutY="-35.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../pic/king.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </children></AnchorPane>
+                                        <AnchorPane maxWidth="-Infinity" prefHeight="200.0" prefWidth="640.0" styleClass="tab-medium" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                                            <children>
+                                                <JFXTreeTableView fx:id="mediumLeaderboard" layoutX="26.0" layoutY="44.0" minHeight="0.0" minWidth="0.0" prefHeight="757.0" prefWidth="684.0" sortMode="ONLY_FIRST_LEVEL" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-44.0" AnchorPane.topAnchor="0.0" />
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane maxWidth="-Infinity" prefHeight="200.0" prefWidth="640.0" styleClass="background" GridPane.columnIndex="2">
+                                            <children>
+                                                <JFXButton fx:id="back" buttonType="RAISED" layoutX="179.0" layoutY="563.0" mnemonicParsing="false" onMouseClicked="#backClicked" prefHeight="272.0" prefWidth="404.0" text="." textFill="WHITE">
+                                                    <font>
+                                                        <Font name="System Bold" size="1.0" />
+                                                    </font>
+                                                    <graphic>
+                                                        <ImageView fitHeight="249.0" fitWidth="395.0">
+                                                            <image>
+                                                                <Image url="@../pic/backleader.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
+                                                </JFXButton>
+                                            </children></AnchorPane>
+                                    </children>
+                                </GridPane>
+                            </content>
+                        </Tab>
+                        <Tab text="HARD">
+                            <content>
+                                <GridPane styleClass="background ">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1175.0" minWidth="10.0" prefWidth="683.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="597.0" minWidth="10.0" prefWidth="597.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="757.0" prefWidth="640.0" styleClass="background">
+                                            <children>
+                                                <ImageView fitHeight="778.0" fitWidth="1434.0" layoutX="107.0" layoutY="-35.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../pic/king.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </children></AnchorPane>
+                                        <AnchorPane maxWidth="-Infinity" prefHeight="200.0" prefWidth="640.0" styleClass="tab-hard" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                                            <children>
+                                                <JFXTreeTableView fx:id="hardLeaderboard" layoutX="26.0" layoutY="44.0" minHeight="0.0" minWidth="0.0" prefHeight="757.0" prefWidth="684.0" sortMode="ONLY_FIRST_LEVEL" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-44.0" AnchorPane.topAnchor="0.0" />
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane maxWidth="-Infinity" prefHeight="200.0" prefWidth="640.0" styleClass="background" GridPane.columnIndex="2">
+                                            <children>
+                                                <JFXButton fx:id="back" buttonType="RAISED" layoutX="179.0" layoutY="561.0" mnemonicParsing="false" onMouseClicked="#backClicked" prefHeight="272.0" prefWidth="404.0" text="." textFill="WHITE">
+                                                    <font>
+                                                        <Font name="System Bold" size="1.0" />
+                                                    </font>
+                                                    <graphic>
+                                                        <ImageView fitHeight="249.0" fitWidth="395.0">
+                                                            <image>
+                                                                <Image url="@../pic/backleader.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
+                                                </JFXButton>
+                                            </children></AnchorPane>
+                                    </children>
+                                </GridPane>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </JFXTabPane>
+            </children>
+        </AnchorPane>
+    </children>
+</GridPane>

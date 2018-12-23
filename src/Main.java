@@ -22,8 +22,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
 
         Stage test = new Stage();
-        MusicPlayer ege = new MusicPlayer();
-        ege.start(test);
+       // MusicPlayer ege = new MusicPlayer();
+        //ege.start(test);
 
         Screen screen = Screen.getPrimary();
         Rectangle2D bounds = screen.getVisualBounds();
