@@ -22,6 +22,11 @@ Description and requirements of Katamino:
 General:
 It is a singleplayer 2D mind game, where the player tries to fill the board with the given blocks in different colours and geometrical shapes.
 
+How to Compile Code:
+1. Pull the project to your favourite IDE.
+2. Specify the Project SDK to a Java SDK to any version above version Java 8.
+3. Compile and have fun.
+
 Board Designs:
 Board designs will feature pixel art that will give an extra joy to the main target audience that are children and also adults. The users can add their own pixel art as an additional feature.
 
