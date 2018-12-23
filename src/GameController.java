@@ -295,6 +295,7 @@ public class GameController {
         }
     }
 
+    //Add event detectors on blocks to be placeable on board
     private void addEventDetectors( GridPane source, Pane target, String blockName) throws Exception{
         //Drag detected event handler is used for adding drag functionality to the
         source.setOnDragDetected(new EventHandler<MouseEvent>() {
@@ -825,6 +826,7 @@ public class GameController {
         });
     }
 
+    //Create board grid
     private void createBoard() throws Exception {
         String dir = System.getProperty(("user.dir")) + "/src/boards/";
         myBoard = new Board(dir + boardName + "/" + boardName);
@@ -857,6 +859,7 @@ public class GameController {
         addEventDetectorsBoard();
     }
 
+    //Create block grids
     private void createBlocks() throws Exception{
         //Get gui grids
         GridPane[] guiBlockGrids = {block0Grid , block1Grid , block2Grid , block3Grid , block4Grid , block5Grid , block6Grid , block7Grid , block8Grid , block9Grid};
@@ -890,6 +893,7 @@ public class GameController {
         }
     }
 
+    //Check if game is over from movecount
     public boolean isGameOver() throws IOException{
         Cell[][] allCells =myBoard.getBoardCells();
         for(int i = 0; i < 20; i++){
@@ -903,6 +907,7 @@ public class GameController {
         return true;
     }
 
+    //Actions to do when time runs out
     public void gameIsOver() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Game Over");
@@ -911,6 +916,7 @@ public class GameController {
         alert.show();
     }
 
+    //Method to accept username after winning a game
     public void updateLeaderboard( int score) throws IOException{
         leaderboard = new Leaderboard();
         leaderboard.getLeaderboard(myBoard.getBoardLevel());
@@ -953,6 +959,7 @@ public class GameController {
 
     }
 
+    //Method to zip a folder.
     public void zipIt(String zipFile, String sourceFolder, ObservableList<String> fileList){
         byte[] buffer = new byte[1024];
         String source = new File(sourceFolder).getName();
@@ -994,6 +1001,7 @@ public class GameController {
         }
     }
 
+    //Method to unzip a folder
     private void unzipIt(String source, String target) {
         byte[] buffer = new byte[1024];
 
