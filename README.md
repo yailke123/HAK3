@@ -26,6 +26,7 @@ How to Compile Code:
 1. Pull the project to your favourite IDE.
 2. Specify the Project SDK to a Java SDK to any version above version Java 8.
 3. Compile and have fun.
+4. We suggest to play the game on a Windows OS and 1080p resolution.
 
 Board Designs:
 Board designs will feature pixel art that will give an extra joy to the main target audience that are children and also adults. The users can add their own pixel art as an additional feature.
