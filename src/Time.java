@@ -83,7 +83,6 @@ public class Time extends Application {
             time.stop();
         }
         time.play();
-
     }
     public static void main(String[] args) {
         launch(args);

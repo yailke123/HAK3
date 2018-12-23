@@ -9,13 +9,10 @@ import javafx.geometry.Rectangle2D;
 
 public class Main extends Application {
     Stage primaryStage;
-    Timer myTimer;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        myTimer = new Timer();
-        myTimer.startTime();
-        System.out.println(myTimer.getTime());
+
         Screen screen = Screen.getPrimary();
         Rectangle2D bounds = screen.getVisualBounds();
 
@@ -34,7 +31,6 @@ public class Main extends Application {
         primaryStage.initStyle(StageStyle.UNDECORATED);
 
         primaryStage.show();//
-
     }
 
     public static void main(String[] args) {
