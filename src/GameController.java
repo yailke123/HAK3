@@ -30,21 +30,20 @@ import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
 public class GameController {
-    public GridPane boardPane;
-    private Board myBoard;
     public enum Color {
         BLACK, WHITE, DEEPPINK, LIGHTGRAY, SPRINGGREEN, RED, YELLOW, DEEPSKYBLUE, PURPLE, ORANGE
     }
-    public Label moveCountLabel, timerLabel;
-    public String boardName = "";
     public Button back;
-    public String userName;
+    public Label moveCountLabel, timerLabel;
+    public GridPane boardPane, block0Grid , block1Grid , block2Grid , block3Grid , block4Grid , block5Grid , block6Grid , block7Grid , block8Grid , block9Grid ;
+    public Label  block0Amount , block1Amount , block2Amount , block3Amount , block4Amount , block5Amount , block6Amount , block7Amount , block8Amount , block9Amount;
+    private String boardName = "";
+    private Board myBoard;
+    private String userName;
     private int[] blockNumbers;
     private int column2,row2;
     private int moveCount = 0;
-    public Leaderboard leaderboard;
-    public GridPane block0Grid , block1Grid , block2Grid , block3Grid , block4Grid , block5Grid , block6Grid , block7Grid , block8Grid , block9Grid ;
-    public Label  block0Amount , block1Amount , block2Amount , block3Amount , block4Amount , block5Amount , block6Amount , block7Amount , block8Amount , block9Amount;
+    private Leaderboard leaderboard;
     private int[][] cellNos = new int[20][20];
     private String[][] blockNo = new String[20][20];
     private int index = 1;
@@ -873,8 +872,6 @@ public class GameController {
                 Block myBlock = new Block( Block.BlockShape.values()[blockIndex] );
                 Cell[][] blockGrid = myBlock.getBlockShape();
                 List<ObjectProperty<EventHandler<? super MouseEvent>>> myList = new ArrayList<>();
-
-//                guiBlockGrids[blockIndex].setGridLinesVisible(true);
                 for (int i = 0; i < 3 ; i++){
                     for (int j = 0; j < 3 ; j++){
                         if (blockGrid[i][j].getVisible()){

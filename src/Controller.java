@@ -20,40 +20,27 @@ import java.util.Optional;
 
 
 public class Controller {
-
-    public String userName;
     public Button startButton, leaderboardButton, createBoardButton, exitButton, soundButton;
 
     public void startButtonClicked()throws Exception{
-
-
-
-
         Parent loader = FXMLLoader.load(getClass().getResource("fxml/game.fxml"));
         Scene scene = new Scene(loader);
         Stage app_stage = (Stage)startButton.getScene().getWindow();
         app_stage.setScene(scene);
         app_stage.show();
     }
-//
+
     public void leaderboardClicked()throws Exception{
         Parent loader = FXMLLoader.load(getClass().getResource("fxml/leaderboard2.fxml" ));//Creates a Parent called loader and assign it as leaderboard.FXML
         Scene scene = new Scene(loader); //This creates a new scene called scene and assigns it as the Sample.FXML document which was named "loader"
         Stage app_stage = (Stage)leaderboardButton.getScene().getWindow();
         app_stage.setScene(scene); //This sets the scene as scene
         app_stage.setMaximized(true);
-
-
-
-        //app_stage.
         app_stage.show(); // this shows the scene
 
     }
 
     public void createBoardButtonClicked()throws  Exception{
-
-
-    //şurayı bir dener misiniz
         createBoardButton.setOnAction(event -> {TextField text = new TextField("Enter Username");
             Stage window = new Stage();
             window.initModality(Modality.APPLICATION_MODAL);
@@ -61,17 +48,6 @@ public class Controller {
             window.setMinWidth(250);
             Button saveButton = new Button ("OK");
 
-//            saveButton.setOnAction(e -> {
-//                System.out.println(text.getText());
-//                String userName = text.getText();
-//                while (userName.length() < 1 )
-//                {
-//                    text.setText("Enter valid name");
-//                    userName = text.getText();
-//                }
-//                window.close();
-//            });
-//
             VBox layout = new VBox(10);
             layout.getChildren().addAll(text,saveButton);
             layout.setAlignment(Pos.CENTER);
@@ -86,16 +62,7 @@ public class Controller {
             window.setTitle("Saved");
             layout.getChildren().add(success);
             window.show();
-
-            //Parent loader = FXMLLoader.load(getClass().getResource("game.fxml"));
-            //Scene scene = new Scene(loader);
-            //Stage app_stage = (Stage)startButton.getScene().getWindow();
-            //app_stage.setScene(scene);
-            //app_stage.show();
-
         });
-
-
         Parent loader = FXMLLoader.load(getClass().getResource("fxml/createBoardScreen.fxml"));
         Scene scene = new Scene(loader);
         Stage app_stage = (Stage)createBoardButton.getScene().getWindow();
