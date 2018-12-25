@@ -66,8 +66,8 @@ public class GameController {
         userName = result.get();
 
         //Choose board screen list initialize
-        File folder = new File(System.getProperty(("user.dir")) + "/src/boards/");
-        File[] listOfFiles = folder.listFiles();
+        final File[] folder = {new File(System.getProperty(("user.dir")) + "/src/boards/")};
+        final File[][] listOfFiles = {folder[0].listFiles()};
         ObservableList<String> fileNames = FXCollections.observableArrayList();
         Stage newDialog = new Stage(StageStyle.UTILITY);
         BorderPane rootpane = new BorderPane();
@@ -75,10 +75,10 @@ public class GameController {
         Button choiceButton = new Button("Choose");
         Button importButton = new Button("Import");
         Button exportButton = new Button("Export");
-        for (int i = 0; i < listOfFiles.length; i++) {
-            if (listOfFiles[i].isDirectory()){
-                myBoard = new Board(System.getProperty(("user.dir"))+ "/src/boards/" + listOfFiles[i].getName() + "/" + listOfFiles[i].getName());
-                fileNames.add(listOfFiles[i].getName() + " (" + Level.values()[myBoard.getBoardLevel()-1] +")") ;
+        for (int i = 0; i < listOfFiles[0].length; i++) {
+            if (listOfFiles[0][i].isDirectory()){
+                myBoard = new Board(System.getProperty(("user.dir"))+ "/src/boards/" + listOfFiles[0][i].getName() + "/" + listOfFiles[0][i].getName());
+                fileNames.add(listOfFiles[0][i].getName() + " (" + Level.values()[myBoard.getBoardLevel()-1] +")") ;
             }
         }
 
@@ -105,13 +105,26 @@ public class GameController {
                 unzipIt(sourceFile, System.getProperty(("user.dir")) + "/src/boards/");
             }
 
-            fileNames.removeAll();
-            File[] newlistOfFiles = folder.listFiles();
-            for (int i = 0; i < newlistOfFiles.length; i++) {
-                if (newlistOfFiles[i].isDirectory())
-                    if(!fileNames.contains(newlistOfFiles[i].getName()))
-                        fileNames.add(newlistOfFiles[i].getName());
+            fileNames.clear();
+            folder[0] = new File(System.getProperty(("user.dir")) + "/src/boards/");
+            listOfFiles[0] = folder[0].listFiles();
+            for (int i = 0; i < listOfFiles[0].length; i++) {
+                if (listOfFiles[0][i].isDirectory()){
+                    try {
+                        myBoard = new Board(System.getProperty(("user.dir"))+ "/src/boards/" + listOfFiles[0][i].getName() + "/" + listOfFiles[0][i].getName());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    fileNames.add(listOfFiles[0][i].getName() + " (" + Level.values()[myBoard.getBoardLevel()-1] +")") ;
+                }
             }
+
+//            File[] newlistOfFiles = folder.listFiles();
+//            for (int i = 0; i < newlistOfFiles.length; i++) {
+//                if (newlistOfFiles[i].isDirectory())
+//                    if(!fileNames.contains(newlistOfFiles[i].getName()))
+//                        fileNames.add(newlistOfFiles[i].getName());
+//            }
         });
 
         //Export Button EventListener
@@ -147,8 +160,8 @@ public class GameController {
         });
 
         //Choose board Screen Photo initialize
-        System.out.println("file:///" + System.getProperty("user.dir") + "/src/boards/"+listOfFiles[0].getName()+"/board.png");
-        Image image = new Image("file:///" + System.getProperty("user.dir") + "/src/boards/"+listOfFiles[0].getName()+"/board.png" , true);
+        System.out.println("file:///" + System.getProperty("user.dir") + "/src/boards/"+ listOfFiles[0][0].getName()+"/board.png");
+        Image image = new Image("file:///" + System.getProperty("user.dir") + "/src/boards/"+ listOfFiles[0][0].getName()+"/board.png" , true);
         ImageView boardImage = new ImageView();
         boardImage.setImage(image);
         boardImage.setFitHeight(350);
