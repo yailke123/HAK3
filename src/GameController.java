@@ -792,6 +792,15 @@ public class GameController {
                         alert.setContentText("Congratulations!");
                         updateLeaderboard(moveCount);
                         alert.showAndWait();
+                        for (int j =0; j<20; j++){
+                            for(int i =0; i<20; i++){
+                                if (cellNos[i][j] != 0){
+                                    String currentStyle = boardPane.getChildren().get( j + i*20 +1).getStyle();
+                                    boardPane.getChildren().get( j + i*20 +1).setStyle(currentStyle.substring(0, currentStyle.indexOf(";")+1)+"}");
+//                                            .indexOf(";").substring(0,30);//.setStyle(boardPane.getChildren().get( j + i*20 +1).getStyle().substring(0,3)+);//"-fx-background-color: " + cellColor+ "; -fx-border-color: RED"+ ";  -fx-border-width: 2 2 2 2;");
+                                }
+                            }
+                        }
 
                     }
                 } catch (IOException e) {
