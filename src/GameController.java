@@ -214,13 +214,13 @@ public class GameController {
         newDialog.setScene(newDialogScene);
 
         //Disable close button
-        Platform.setImplicitExit(false);
-        newDialog.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent event) {
-                event.consume();
-            }
-        });
+//        Platform.setImplicitExit(false);
+//        newDialog.setOnCloseRequest(new EventHandler<WindowEvent>() {
+//            @Override
+//            public void handle(WindowEvent event) {
+//                event.consume();
+//            }
+//        });
 
         //Show Dialog
         newDialog.showAndWait();
