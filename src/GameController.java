@@ -69,24 +69,18 @@ public class GameController {
         final File[] folder = {new File(System.getProperty(("user.dir")) + "/src/boards/")};
         final File[][] listOfFiles = {folder[0].listFiles()};
         ObservableList<String> fileNames = FXCollections.observableArrayList();
-        Stage newDialog = new Stage(StageStyle.UNIFIED);
+        Stage newDialog = new Stage(StageStyle.UTILITY);
         BorderPane rootpane = new BorderPane();
         HBox buttonBox = new HBox();
         Button choiceButton = new Button("Choose");
         Button importButton = new Button("Import");
         Button exportButton = new Button("Export");
-        Button back2 = new Button( "Back");
         for (int i = 0; i < listOfFiles[0].length; i++) {
             if (listOfFiles[0][i].isDirectory()){
                 myBoard = new Board(System.getProperty(("user.dir"))+ "/src/boards/" + listOfFiles[0][i].getName() + "/" + listOfFiles[0][i].getName());
                 fileNames.add(listOfFiles[0][i].getName() + " (" + Level.values()[myBoard.getBoardLevel()-1] +")") ;
             }
         }
-
-
-        back2.setOnMouseClicked((event)-> {
-            newDialog.close();
-        });
 
         //Import button eventListener
         importButton.setOnMouseClicked((event)->{
@@ -208,7 +202,7 @@ public class GameController {
         newDialog.initModality(Modality.APPLICATION_MODAL);
         newDialog.setTitle("New");
 
-        buttonBox.getChildren().addAll(choiceButton, importButton, exportButton, back2);
+        buttonBox.getChildren().addAll(choiceButton, importButton, exportButton);
         rootpane.setBottom(buttonBox);
         Scene newDialogScene = new Scene(rootpane);
         newDialog.setScene(newDialogScene);

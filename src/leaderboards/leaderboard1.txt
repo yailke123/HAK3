@@ -1,3 +1,5 @@
+dxfs
+8
 zego
 20
 Yağız
@@ -6,8 +8,6 @@ Mustafa
 36
 Ege
 55
-null
-1000
 null
 1000
 null
