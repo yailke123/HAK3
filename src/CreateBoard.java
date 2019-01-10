@@ -23,7 +23,7 @@ public class CreateBoard {
     public enum Color {
         BLACK, WHITE, DEEPPINK, GRAY, SPRINGGREEN, RED, YELLOW, DEEPSKYBLUE, PURPLE, ORANGE
     }
-
+    public Pane blackButton,pinkButton,grayButton,greenButton,redButton,yellowButton,blueButton,purpleButton,orangeButton;
     public Button back, test;
     public GridPane block0Grid, block1Grid, block2Grid, block3Grid, block4Grid, block5Grid, block6Grid, block7Grid, block8Grid, block9Grid;
     private String userBoardName,dir;
@@ -52,42 +52,62 @@ public class CreateBoard {
 
     public void blackClicked() throws Exception {
         choosenColor = "BLACK";
+        clearPanes();
+        blackButton.setStyle("-fx-background-color: BLACK;-fx-border-color: BLUE;-fx-border-width: 8px;");
+
     }
 
     public void whiteClicked() throws Exception {
         choosenColor = "WHITE";
+        clearPanes();
     }
 
     public void pinkClicked() throws Exception {
         choosenColor = "DEEPPINK";
+        clearPanes();
+        pinkButton.setStyle("-fx-background-color: DEEPPINK;-fx-border-color: BLUE;-fx-border-width: 8px;");
     }
 
     public void grayClicked() throws Exception {
         choosenColor = "GRAY";
+        clearPanes();
+        grayButton.setStyle("-fx-background-color: GRAY;-fx-border-color: BLUE;-fx-border-width: 8px;");
     }
 
     public void greenClicked() throws Exception {
         choosenColor = "SPRINGGREEN";
+        clearPanes();
+        greenButton.setStyle("-fx-background-color: SPRINGGREEN;-fx-border-color: BLUE;-fx-border-width: 8px;");
     }
 
     public void redClicked() throws Exception {
         choosenColor = "RED";
+        clearPanes();
+        redButton.setStyle("-fx-background-color: RED;-fx-border-color: BLUE;-fx-border-width: 8px;");
     }
 
     public void yellowClicked() throws Exception {
         choosenColor = "YELLOW";
+        clearPanes();
+        yellowButton.setStyle("-fx-background-color: YELLOW;-fx-border-color: BLUE;-fx-border-width: 8px;");
     }
 
     public void blueClicked() throws Exception {
         choosenColor = "DEEPSKYBLUE";
+        clearPanes();
+        blueButton.setStyle("-fx-background-color: DEEPSKYBLUE;-fx-border-color: BLUE;-fx-border-width: 8px;");
     }
 
     public void purpleClicked() throws Exception {
         choosenColor = "PURPLE";
+        clearPanes();
+        purpleButton.setStyle("-fx-background-color: PURPLE;-fx-border-color: BLUE;-fx-border-width: 8px;");
     }
 
     public void orangeClicked() throws Exception {
         choosenColor = "ORANGE";
+        clearPanes();
+        orangeButton.setStyle("-fx-background-color: ORANGE;-fx-border-color: BLUE;-fx-border-width: 8px;");
     }
 
     public void testClicked() throws Exception {
@@ -300,6 +320,7 @@ public class CreateBoard {
             writer.close();
 
            //writing block info
+            int noOfCells=blockNum0.getValue()+blockNum1.getValue()*2+ blockNum2.getValue()*4+ blockNum3.getValue()*4+ blockNum4.getValue()*3+blockNum5.getValue()*2+blockNum6.getValue()*4+blockNum7.getValue()*4+blockNum8.getValue()*5+blockNum9.getValue()*5;
             blockwriter.println(blockNum0.getValue());
             blockwriter.println(blockNum1.getValue());
             blockwriter.println(blockNum2.getValue());
@@ -312,6 +333,9 @@ public class CreateBoard {
             blockwriter.println(blockNum9.getValue());
 
             blockwriter.close();
+
+            if (noOfBlocks>noOfCells)
+                System.out.println("Not possible");
 
             if (noOfBlocks<25)
             {infowriter.print(1);}
@@ -351,5 +375,18 @@ public class CreateBoard {
                 }
             }
         }
+    }
+
+    private void clearPanes()
+    {
+        blackButton.setStyle("-fx-background-color: BLACK");
+        pinkButton.setStyle("-fx-background-color: DEEPPINK" );
+        grayButton.setStyle("-fx-background-color: GRAY");
+        greenButton.setStyle("-fx-background-color: SPRINGGREEN");
+        redButton.setStyle("-fx-background-color: RED");
+        yellowButton.setStyle("-fx-background-color: YELLOW");
+        blueButton.setStyle("-fx-background-color: DEEPSKYBLUE");
+        purpleButton.setStyle("-fx-background-color: PURPLE");
+        orangeButton.setStyle("-fx-background-color: ORANGE");
     }
 }
