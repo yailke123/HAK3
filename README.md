@@ -1,4 +1,6 @@
 # HAK3
+Trailer: https://www.youtube.com/watch?v=U6h1B2jYoqc
+
 Katamino - Bilkent University CS319-1 Project for Group Number:1.H 
 Group Name:HAK3 
 
